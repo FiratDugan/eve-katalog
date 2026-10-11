@@ -11,8 +11,8 @@
  */
 
 // ---- Ayarlar (kurulumda doldurulur) ----
-const DEPO = 'KULLANICI_ADI/eve-katalog';        // GitHub'daki depo: sahip/ad
-const SITE = 'https://KULLANICI_ADI.github.io/eve-katalog/';  // Kataloğun yayın adresi
+const DEPO = 'FiratDugan/eve-katalog';        // GitHub'daki depo: sahip/ad
+const SITE = 'https://firatdugan.github.io/eve-katalog/';  // Kataloğun yayın adresi
 // ---------------------------------------
 
 const SAYFA_FIYAT = 'Fiyatlar';
