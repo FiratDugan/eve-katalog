@@ -6,8 +6,8 @@
  *     birkaç dakika içinde yeni fiyatlarla yeniden oluşturulup yayınlanır.
  *   - Son güncellemenin durumu: son oluşturmanın sürdüğünü, yayına alındığını ya da hata verdiğini gösterir.
  *
- * Kurulum için bkz. KURULUM.md. GitHub anahtarı tabloya değil, betik ayarlarına kaydedilir;
- * tabloyu düzenleyebilen biri anahtarı göremez.
+ * Kurulum için bkz. KURULUM.md. GitHub anahtarı betik ayarlarına kaydedilir. Anahtar yalnızca
+ * katalog oluşturma akışını başlatabilir ve depoyu okuyabilir; depoya yazamaz.
  */
 
 // ---- Ayarlar (kurulumda doldurulur) ----
@@ -18,6 +18,8 @@ const SITE = 'https://KULLANICI_ADI.github.io/eve-katalog/';  // Kataloğun yay�
 const SAYFA_FIYAT = 'Fiyatlar';
 const SAYFA_AYAR = 'Ayarlar';
 const BASLIKLAR = ['Kod', 'Ürün (yalnızca bilgi)', 'Adet', 'TL', 'USD', 'EUR'];
+const AKIS = 'katalog.yml';
+const ANAHTAR_UYARI_GUN = 30;  // anahtarın bitmesine bu kadar gün kala uyarılır
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -50,9 +52,9 @@ function kataloguGuncelle() {
     ui.ButtonSet.YES_NO);
   if (onay !== ui.Button.YES) return;
 
-  const yanit = github('post', `/repos/${DEPO}/dispatches`, {
-    event_type: 'fiyat-guncelle',
-    client_payload: veri,
+  const yanit = github('post', `/repos/${DEPO}/actions/workflows/${AKIS}/dispatches`, {
+    ref: 'main',
+    inputs: { fiyatlar: JSON.stringify(veri) },
   });
   if (yanit.getResponseCode() !== 204) {
     ui.alert('Gönderilemedi', `GitHub yanıtı: ${yanit.getResponseCode()}\n${yanit.getContentText()}`, ui.ButtonSet.OK);
@@ -60,7 +62,7 @@ function kataloguGuncelle() {
   }
   ui.alert('Güncelleme başladı',
     'Katalog yaklaşık 3–5 dakika içinde yeni fiyatlarla yayında olur.\n\n' +
-    'Sonucu "Katalog > Son güncellemenin durumu" menüsünden görebilirsiniz.',
+    'Sonucu "Katalog > Son güncellemenin durumu" menüsünden görebilirsiniz.' + anahtarUyarisi(yanit),
     ui.ButtonSet.OK);
 }
 
@@ -110,7 +112,7 @@ function katalogKodlari() {
 
 function durumuGoster() {
   const ui = SpreadsheetApp.getUi();
-  const yanit = github('get', `/repos/${DEPO}/actions/runs?per_page=1`);
+  const yanit = github('get', `/repos/${DEPO}/actions/workflows/${AKIS}/runs?per_page=1`);
   if (yanit.getResponseCode() !== 200) {
     ui.alert('Durum alınamadı', `GitHub yanıtı: ${yanit.getResponseCode()}`, ui.ButtonSet.OK);
     return;
@@ -126,7 +128,7 @@ function durumuGoster() {
   if (calisma.status !== 'completed') durum = 'Devam ediyor. Birkaç dakika sonra tekrar bakın.';
   else if (calisma.conclusion === 'success') durum = `Tamamlandı, katalog yayında:\n${SITE}`;
   else durum = 'Hata verdi. Yayındaki katalog değişmedi, eski fiyatlarla duruyor.\nLütfen katalog sorumlusuna haber verin.';
-  ui.alert('Son güncelleme', `Başlama: ${zaman}\n\n${durum}`, ui.ButtonSet.OK);
+  ui.alert('Son güncelleme', `Başlama: ${zaman}\n\n${durum}` + anahtarUyarisi(yanit), ui.ButtonSet.OK);
 }
 
 // ---- Kurulum ----
@@ -138,7 +140,7 @@ function anahtariKaydet() {
   PropertiesService.getScriptProperties().setProperty('GITHUB_ANAHTAR', yanit.getResponseText().trim());
   const deneme = github('get', `/repos/${DEPO}`);
   ui.alert(deneme.getResponseCode() === 200
-    ? 'Anahtar kaydedildi, depoya erişim var.'
+    ? 'Anahtar kaydedildi, depoya erişim var.' + anahtarUyarisi(deneme, true)
     : `Anahtar kaydedildi ama depoya erişilemedi (yanıt: ${deneme.getResponseCode()}). DEPO ayarını ve anahtarın yetkilerini kontrol edin.`);
 }
 
@@ -192,6 +194,22 @@ function sayfaSifirla(ss, ad) {
   const yeni = ss.insertSheet(ad + ' (yeni)');
   if (eski) ss.deleteSheet(eski);
   return yeni.setName(ad);
+}
+
+/**
+ * GitHub, bitiş tarihi olan anahtarlarda her yanıta bu tarihi ekler. Bitime az kaldıysa
+ * (ya da "hep" istenirse) mesajın sonuna eklenecek uyarıyı döner; süresiz anahtarda boş döner.
+ */
+function anahtarUyarisi(yanit, hep) {
+  const basliklar = yanit.getAllHeaders();
+  const anahtar = Object.keys(basliklar).find((b) => b.toLowerCase() === 'github-authentication-token-expiration');
+  if (!anahtar) return hep ? '\nAnahtarın bitiş tarihi yok.' : '';
+  const bitis = new Date(basliklar[anahtar].replace(' UTC', 'Z').replace(' ', 'T'));
+  const kalan = Math.floor((bitis - new Date()) / 86400000);
+  if (!hep && kalan > ANAHTAR_UYARI_GUN) return '';
+  const tarih = Utilities.formatDate(bitis, SpreadsheetApp.getActive().getSpreadsheetTimeZone(), 'dd.MM.yyyy');
+  return `\n\nGitHub anahtarının süresi ${tarih} tarihinde (${kalan} gün sonra) doluyor.` +
+    (hep ? '' : ' Lütfen katalog sorumlusuna haber verin.');
 }
 
 function depodanOku(yol) {
