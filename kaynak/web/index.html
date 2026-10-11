@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EVE Tekstil — Ürün Kataloğu</title>
+<meta name="description" content="EVE Tekstil ürün kataloğu. Ürün kodu ile arayın, PDF olarak indirin.">
+<meta name="theme-color" content="#221D1A">
+<link rel="stylesheet" href="goruntuleyici.css">
+</head>
+<body>
+
+<header class="ust">
+  <a class="marka" href="https://evetekstil.com" aria-label="EVE Tekstil">
+    <span class="logo"><b>EVE</b></span>
+    <span class="marka-ad" data-t="baslik">Ürün Kataloğu</span>
+  </a>
+
+  <form class="ara" role="search" autocomplete="off">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input type="search" list="kodlar" data-t-ph="ara" placeholder="Ürün kodu ara" aria-label="Ürün kodu ara" enterkeyhint="search">
+    <datalist id="kodlar"></datalist>
+    <span class="ara-hata" role="status" aria-live="polite"></span>
+  </form>
+
+  <div class="araclar">
+    <button class="ara-ac" type="button" aria-label="Ara"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+    <div class="dil" role="group" aria-label="Dil / Language">
+      <button type="button" data-dil="tr">TR</button><button type="button" data-dil="en">EN</button>
+    </div>
+    <a class="pdf" download>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+      <span data-t="pdf">PDF İndir</span>
+    </a>
+  </div>
+</header>
+
+<main class="sahne" aria-label="Katalog">
+  <div class="kitap-alani"></div>
+  <button class="ok onceki" type="button" aria-label="Önceki sayfa"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button class="ok sonraki" type="button" aria-label="Sonraki sayfa"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+</main>
+
+<footer class="alt">
+  <span class="sayac" aria-live="polite"></span>
+  <a class="sor" target="_blank" rel="noopener" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+    <span></span>
+  </a>
+</footer>
+
+<noscript><p class="noscript">Katalog için JavaScript gerekir. <a href="pdf/Eve-Tekstil-Katalog-TR.pdf">PDF (TR)</a> · <a href="pdf/Eve-Tekstil-Katalog-EN.pdf">PDF (EN)</a></p></noscript>
+
+<script>window.KATALOG = __VERI__;</script>
+<script src="page-flip.browser.js"></script>
+<script src="goruntuleyici.js"></script>
+</body>
+</html>

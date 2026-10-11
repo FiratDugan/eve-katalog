@@ -1,0 +1,60 @@
+# Kataloğu oluşturup GitHub Pages'te yayınlar.
+# Firmanın Google E-Tablosundaki "Katalog > Kataloğu güncelle" menüsü bu akışı
+# yeni fiyatlarla başlatır (repository_dispatch). Actions sekmesinden elle de çalıştırılabilir.
+# Zamanlanmış çalışma yok: GitHub, 60 gün hareketsiz depolarda zamanlanmış akışları kapatıyor.
+name: Katalog
+
+on:
+  repository_dispatch:
+    types: [fiyat-guncelle]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: katalog
+  cancel-in-progress: false
+
+jobs:
+  olustur:
+    # build.py görselleri macOS'un sips aracıyla küçültüyor; Chrome bu makinede kurulu geliyor
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tablodan gelen fiyatları yaz
+        if: github.event_name == 'repository_dispatch'
+        env:
+          FIYATLAR: ${{ toJSON(github.event.client_payload) }}
+        run: printf '%s\n' "$FIYATLAR" > kaynak/fiyatlar.json
+
+      - name: Kataloğu oluştur
+        run: python3 kaynak/build.py
+
+      - name: Fiyatları depoya kaydet
+        if: github.event_name == 'repository_dispatch'
+        env:
+          GECERLILIK: ${{ github.event.client_payload.gecerlilik }}
+        run: |
+          git config user.name "Katalog"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaynak/fiyatlar.json
+          git diff --cached --quiet || { git commit -m "Fiyatlar güncellendi (geçerlilik: $GECERLILIK)"; git push; }
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: cikti/web
+
+  yayinla:
+    needs: olustur
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.yayin.outputs.page_url }}
+    steps:
+      - id: yayin
+        uses: actions/deploy-pages@v4

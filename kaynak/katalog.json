@@ -1,0 +1,151 @@
+{
+  "firma": {
+    "ad": "EVE TEKSTİL",
+    "yil": "2026",
+    "telefon": "+90 532 066 68 99",
+    "telefon2": "+90 232 431 08 78",
+    "whatsapp": "905320666899",
+    "eposta": "info@evetekstil.com",
+    "web": "evetekstil.com",
+    "adres": { "tr": "Kısıkköy Mobilyacılar Sitesi, İzmir / Türkiye", "en": "Kısıkköy Furniture District, İzmir / Türkiye" },
+    "slogan": { "tr": "Nevresimden yastığa, evinizin her köşesi için.", "en": "From bedding to pillows, for every corner of your home." },
+    "sertifikalar": ["OEKO-TEX®", "ISO 9001", "CE"]
+  },
+
+  "metin": {
+    "tr": {
+      "katalog": "Ürün Kataloğu",
+      "hakkimizda_etiket": "Hakkımızda",
+      "notlar": "Notlar",
+      "ikon": { "visco": "Visco hafızalı sünger", "yikanabilir": "Yıkanabilir kılıf", "nefes": "Nefes alan kumaş", "oeko": "OEKO-TEX® sertifikalı" },
+      "hakkimizda_baslik": "2001'den bu yana uyku için üretiyoruz.",
+      "hakkimizda": [
+        "EVE SER Tekstil, 2001 yılında vatka üretimi geleneğinin ev tekstiline uzanan bir devamı olarak İzmir'de kuruldu.",
+        "Bugün yastık, yorgan, alez ve dolgu malzemelerini kendi tesisimizde üretiyoruz. Üretimde kullandığımız elyaf açma, boncuk elyaf ve yastık dolum makinelerini de kendimiz imal edip ihraç ediyoruz.",
+        "Perakende ve toptan müşterilerimize rekabetçi fiyat, kontrol edilmiş kalite ve hızlı teslimat sunuyoruz."
+      ],
+      "rakamlar": [["2001", "kuruluş yılı"], ["100%", "kendi üretimimiz"], ["3", "uluslararası sertifika"]],
+      "sertifika_baslik": "Sertifikalar",
+      "dizin_baslik": "Ürün Kodu Dizini",
+      "dizin_aciklama": "Sipariş ve bilgi talepleriniz için ürün kodunu belirtmeniz yeterlidir.",
+      "kod": "Kod", "urun": "Ürün", "sayfa": "Sayfa",
+      "olcu": "Ölçü", "dolgu": "Dolgu", "kilif": "Kılıf", "sertlik": "Sertlik", "yikama": "Yıkama", "yas": "Yaş grubu",
+      "sertlik_etiket": ["Yumuşak", "Orta", "Sert"],
+      "fiyat_baslik": "Fiyat Listesi",
+      "galeri_etiket": "Fiyat listesindeki ürünler",
+      "fiyat_devam": "devamı",
+      "fiyat_gecerlilik": "Geçerlilik tarihi: {tarih}",
+      "adet": "Adet",
+      "fiyat_aciklama": "Fiyatlar adet başına birim fiyattır. Adet sütunu, o fiyatın geçerli olduğu minimum sipariş miktarını gösterir.",
+      "fiyat_notlar": [
+        "Fiyatlara KDV dahil değildir.",
+        "Fiyatlar önceden haber verilmeksizin değiştirilebilir."
+      ],
+      "iletisim_baslik": "Sipariş ve bilgi için",
+      "iletisim_alt": "Ürün kodunu belirterek bize ulaşın.",
+      "ornek_not": "Örnek katalog · görseller ve ürün bilgileri temsilidir"
+    },
+    "en": {
+      "katalog": "Product Catalogue",
+      "hakkimizda_etiket": "About us",
+      "notlar": "Notes",
+      "ikon": { "visco": "Visco memory foam", "yikanabilir": "Washable cover", "nefes": "Breathable fabric", "oeko": "OEKO-TEX® certified" },
+      "hakkimizda_baslik": "Making sleep products since 2001.",
+      "hakkimizda": [
+        "EVE SER Tekstil was founded in İzmir in 2001, growing out of a family tradition of wadding production into home textile manufacturing.",
+        "Today we produce pillows, duvets, mattress protectors and filling materials in our own facility. We also build and export the fibre opening, ball fibre and pillow filling machines used in production.",
+        "We offer retail and wholesale customers competitive prices, controlled quality and fast delivery."
+      ],
+      "rakamlar": [["2001", "founded"], ["100%", "in-house production"], ["3", "international certificates"]],
+      "sertifika_baslik": "Certificates",
+      "dizin_baslik": "Product Code Index",
+      "dizin_aciklama": "Simply quote the product code for orders and enquiries.",
+      "kod": "Code", "urun": "Product", "sayfa": "Page",
+      "olcu": "Size", "dolgu": "Filling", "kilif": "Cover", "sertlik": "Firmness", "yikama": "Care", "yas": "Age group",
+      "sertlik_etiket": ["Soft", "Medium", "Firm"],
+      "fiyat_baslik": "Price List",
+      "galeri_etiket": "Products in this price list",
+      "fiyat_devam": "continued",
+      "fiyat_gecerlilik": "Valid from: {tarih}",
+      "adet": "Qty",
+      "fiyat_aciklama": "Prices are per unit. The quantity column shows the minimum order quantity for each price.",
+      "fiyat_notlar": [
+        "Prices exclude VAT.",
+        "Prices are subject to change without notice."
+      ],
+      "iletisim_baslik": "Orders & enquiries",
+      "iletisim_alt": "Contact us quoting the product code.",
+      "ornek_not": "Sample catalogue · images and product details are illustrative"
+    }
+  },
+
+  "kategoriler": [
+    {
+      "id": "cocuk",
+      "kod_araligi": "EVE-500",
+      "gorsel": "bolum-cocuk.jpg",
+      "ad": { "tr": "Çocuk Yastıkları", "en": "Kids' Pillows" },
+      "aciklama": {
+        "tr": "Sevimli karakterler, visco konforu. Çıkarılabilir, yıkanabilir kılıflarıyla küçükler için tasarlandı.",
+        "en": "Playful characters with visco comfort. Designed for little ones, with removable, washable covers."
+      }
+    }
+  ],
+
+  "urunler": [
+    {
+      "kod": "EVE-501",
+      "kategori": "cocuk",
+      "ad": { "tr": "Unicorn Çocuk Visco Yastık", "en": "Unicorn Kids' Visco Pillow" },
+      "aciklama": {
+        "tr": "Pembe unicorn tasarımı ve boynuz detaylarıyla çocuk odasının en sevilen parçası. Visco yapısı baş ve boyun formuna uyum sağlar.",
+        "en": "A pink unicorn with soft horn details: the favourite piece in any kids' room. The visco core moulds to head and neck."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
+        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
+        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
+        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
+        "sertlik": 2
+      },
+      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+    },
+    {
+      "kod": "EVE-502",
+      "kategori": "cocuk",
+      "ad": { "tr": "Balina Çocuk Visco Yastık", "en": "Whale Kids' Visco Pillow" },
+      "aciklama": {
+        "tr": "Puantiyeli mavi balina, kumaştan kuyruk detayıyla. Ergonomik formu gelişim çağındaki çocuklara doğru destek sunar.",
+        "en": "A polka-dot blue whale with a fabric tail. Its ergonomic shape gives growing children the right support."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
+        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
+        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
+        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
+        "sertlik": 2
+      },
+      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+    },
+    {
+      "kod": "EVE-503",
+      "kategori": "cocuk",
+      "ad": { "tr": "Köpek Çocuk Visco Yastık", "en": "Puppy Kids' Visco Pillow" },
+      "aciklama": {
+        "tr": "Kulaklı, gülümseyen köpek karakteri. Nefes alabilen kumaşı terlemeyi azaltır, ferah bir uyku sağlar.",
+        "en": "A smiling puppy with soft ears. Breathable fabric reduces sweating for a fresher night's sleep."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
+        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
+        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
+        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
+        "sertlik": 2
+      },
+      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+    }
+  ]
+}

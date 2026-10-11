@@ -1,0 +1,298 @@
+/* Eve Tekstil katalog sayfaları — A4 dikey, 794 × 1123 px tuval */
+
+:root {
+  --kagit: #FBF8F4;
+  --kagit-koyu: #F3EDE6;
+  --murekkep: #2A2421;
+  --soluk: #7B706A;
+  --cizgi: #E6DDD4;
+  --kirmizi: #B0141C;
+  --kirmizi-koyu: #8E0F16;
+  --mercan: #EE6A5D;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@page { size: 210mm 297mm; margin: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--kagit);
+  color: var(--murekkep);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.sayfa {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--kagit);
+  page-break-after: always;
+  break-after: page;
+}
+.sayfa:last-child { page-break-after: auto; break-after: auto; }
+
+/* Tek sayfa görüntüleme (web sürümü için sayfa görüntüsü alınırken) */
+body.tek .sayfa { display: none; }
+body.tek .sayfa.goster { display: block; }
+
+/* ---------- Ortak parçalar ---------- */
+
+.etiket {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--kirmizi);
+}
+
+.sayfa-ust {
+  position: absolute;
+  top: 34px; left: 56px; right: 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--soluk);
+  z-index: 2;
+}
+
+.sayfa-alt {
+  position: absolute;
+  bottom: 30px; left: 56px; right: 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; letter-spacing: .08em;
+  color: var(--soluk);
+  border-top: 1px solid var(--cizgi);
+  padding-top: 12px;
+}
+.sayfa-alt .no { font-weight: 700; color: var(--murekkep); letter-spacing: .05em; }
+
+.logo {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 78px; height: 78px; border-radius: 50%;
+  background: var(--kirmizi); color: #fff;
+  font-weight: 700; line-height: 1;
+}
+.logo b { font-size: 22px; letter-spacing: .14em; margin-left: .14em; }
+.logo i { font-style: normal; font-size: 6.5px; letter-spacing: .42em; margin: 5px 0 0 .42em; }
+
+/* ---------- Kapak ---------- */
+
+.kapak .kapak-gorsel { position: absolute; inset: 0; }
+.kapak .kapak-gorsel img { object-position: 50% 62%; }
+.kapak::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(42,36,33,.28) 0%, rgba(42,36,33,0) 22%),
+    linear-gradient(0deg, rgba(251,248,244,1) 0%, rgba(251,248,244,.96) 24%, rgba(251,248,244,0) 46%);
+}
+.kapak-ust {
+  position: absolute; top: 48px; left: 56px; right: 56px; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.kapak-ust .dil {
+  color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .2em;
+  border: 1px solid rgba(255,255,255,.7); border-radius: 20px; padding: 6px 14px;
+}
+.kapak-alt { position: absolute; left: 56px; right: 56px; bottom: 64px; z-index: 2; }
+.kapak-alt .etiket { margin-bottom: 14px; }
+.kapak-alt h1 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 84px; line-height: .98; letter-spacing: -.02em;
+}
+.kapak-alt .slogan { margin-top: 18px; font-size: 15px; color: var(--soluk); max-width: 420px; }
+.kapak-alt .cizgi { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--cizgi); font-size: 11px; color: var(--soluk); letter-spacing: .06em; }
+.ornek-not { color: var(--mercan); font-weight: 500; }
+
+/* ---------- Hakkımızda ---------- */
+
+.hakkimizda .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
+.hakkimizda h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 50px; line-height: 1.06; letter-spacing: -.015em;
+  margin: 18px 0 36px; max-width: 600px;
+}
+.hakkimizda .metin { columns: 2; column-gap: 36px; font-size: 13.5px; }
+.hakkimizda .metin p { margin-bottom: 12px; break-inside: avoid; }
+.rakamlar {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  margin-top: 54px; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi);
+}
+.rakamlar div { padding: 26px 0 24px; }
+.rakamlar div + div { padding-left: 28px; border-left: 1px solid var(--cizgi); }
+.rakamlar b { display: block; font-family: var(--serif); font-weight: 400; font-size: 46px; line-height: 1; color: var(--kirmizi); }
+.rakamlar span { display: block; margin-top: 10px; font-size: 12px; color: var(--soluk); }
+.sertifikalar { margin-top: 48px; }
+.sertifikalar .rozetler { display: flex; gap: 14px; margin-top: 16px; }
+.sertifikalar .rozetler span {
+  border: 1.5px solid var(--murekkep); border-radius: 4px;
+  padding: 12px 20px; font-weight: 700; font-size: 14px; letter-spacing: .06em;
+}
+.hakkimizda .alt-blok {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 250px;
+  background: var(--kagit-koyu);
+}
+.hakkimizda .alt-blok .sayfa-alt { border-top-color: #DCD1C6; }
+.hakkimizda .alt-blok blockquote {
+  position: absolute; left: 56px; right: 56px; top: 54px;
+  font-family: var(--serif); font-size: 30px; line-height: 1.2; font-weight: 400; color: var(--kirmizi-koyu);
+}
+
+/* ---------- Kod dizini ---------- */
+
+.dizin .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
+.dizin h2 { font-family: var(--serif); font-weight: 400; font-size: 50px; line-height: 1.05; margin: 18px 0 12px; }
+.dizin .aciklama { color: var(--soluk); font-size: 14px; margin-bottom: 40px; }
+.dizin table { width: 100%; border-collapse: collapse; }
+.dizin th {
+  text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--soluk); padding: 0 0 10px; border-bottom: 1.5px solid var(--murekkep);
+}
+.dizin th:last-child, .dizin td:last-child { text-align: right; }
+.dizin td { padding: 15px 0; border-bottom: 1px solid var(--cizgi); font-size: 14px; }
+.dizin td.kod { width: 130px; }
+.dizin td.kod a { font-weight: 700; color: var(--kirmizi); letter-spacing: .04em; text-decoration: none; }
+.dizin td a { color: inherit; text-decoration: none; }
+.dizin tr.grup td {
+  padding: 28px 0 10px; border-bottom: none; text-align: left;
+  font-family: var(--serif); font-size: 20px;
+}
+
+/* ---------- Bölüm açılışı ---------- */
+
+.bolum .bolum-gorsel { position: absolute; top: 0; left: 0; right: 0; height: 640px; }
+.bolum .bolum-metin { position: absolute; top: 690px; left: 56px; right: 56px; }
+.bolum .bolum-no { font-family: var(--serif); font-size: 15px; color: var(--kirmizi); margin-bottom: 8px; }
+.bolum h2 { font-family: var(--serif); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -.02em; }
+.bolum p { margin-top: 20px; font-size: 15px; color: var(--soluk); max-width: 480px; }
+.bolum .kod-araligi {
+  position: absolute; right: 0; top: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--murekkep);
+  border: 1px solid var(--cizgi); border-radius: 20px; padding: 7px 14px; background: #fff;
+}
+
+/* ---------- Ürün sayfası ---------- */
+
+.urun-gorseller {
+  position: absolute; top: 72px; left: 56px; right: 56px; height: 600px;
+  display: grid; grid-template-columns: 2fr 1fr; gap: 12px;
+}
+.urun-gorseller { grid-template-rows: minmax(0, 1fr); }
+.urun-gorseller.tek { grid-template-columns: 1fr; }
+.urun-gorseller .ana { position: relative; min-height: 0; border-radius: 6px; overflow: hidden; }
+.urun-gorseller .yan { display: grid; gap: 12px; grid-auto-rows: minmax(0, 1fr); min-height: 0; }
+.urun-gorseller .yan div { min-height: 0; border-radius: 6px; overflow: hidden; }
+
+.kod-rozet {
+  position: absolute; left: 16px; top: 16px;
+  background: var(--kirmizi); color: #fff;
+  font-size: 15px; font-weight: 700; letter-spacing: .08em;
+  padding: 9px 16px; border-radius: 4px;
+}
+
+.urun-bilgi {
+  position: absolute; top: 708px; left: 56px; right: 56px; bottom: 80px;
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px;
+}
+.urun-bilgi h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.08; letter-spacing: -.01em; margin: -4px 0 14px; }
+.urun-bilgi .aciklama { font-size: 13.5px; color: #4A413C; }
+
+.ikonlar { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; margin-top: 22px; }
+.ikonlar li { display: flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 500; line-height: 1.3; }
+.ikonlar svg { flex: none; width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: var(--kagit-koyu); stroke: var(--kirmizi); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.ozellikler { border-top: 1.5px solid var(--murekkep); }
+.ozellikler div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--cizgi); font-size: 12.5px; }
+.ozellikler dt { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--soluk); padding-top: 2px; }
+.ozellikler dd { font-weight: 500; }
+.ozellikler .kod-satir dd { font-weight: 700; color: var(--kirmizi); letter-spacing: .04em; }
+
+.sertlik { display: flex; align-items: center; gap: 10px; }
+.sertlik .bar { display: flex; gap: 3px; }
+.sertlik .bar i { width: 22px; height: 6px; border-radius: 3px; background: var(--cizgi); }
+.sertlik .bar i.dolu { background: var(--kirmizi); }
+
+/* ---------- Fiyat listesi ---------- */
+
+.dizin tr.fiyat-satir td { font-style: normal; color: var(--soluk); }
+.dizin tr.fiyat-satir td.kod a { color: var(--soluk); letter-spacing: .12em; }
+
+.fiyat .icerik { position: absolute; top: 96px; left: 56px; right: 56px; }
+.fiyat h2 { font-family: var(--serif); font-weight: 400; font-size: 44px; line-height: 1.05; letter-spacing: -.015em; margin: 14px 0 10px; }
+.fiyat h2 span { font-size: 22px; color: var(--soluk); }
+.fiyat .gecerlilik { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--murekkep); }
+.fiyat .aciklama { font-size: 12.5px; color: var(--soluk); margin: 6px 0 28px; max-width: 560px; }
+
+.fiyat table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.fiyat th {
+  text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--soluk); padding: 0 0 10px; border-bottom: 1.5px solid var(--murekkep); white-space: nowrap;
+}
+.fiyat th i { font-style: normal; color: var(--kirmizi); margin-left: 3px; letter-spacing: 0; }
+.fiyat td { padding: 9px 0; font-size: 13px; border-bottom: 1px solid var(--cizgi); vertical-align: middle; }
+.fiyat tr.ilk td { border-top: 1px solid #D9CEC3; }
+.fiyat tbody tr:first-child td { border-top: none; }
+.fiyat td.kod { width: 92px; vertical-align: top; padding-top: 10px; line-height: 1.35; border-bottom-color: #D9CEC3; }
+.fiyat td.kod a { font-weight: 700; color: var(--kirmizi); letter-spacing: .04em; text-decoration: none; }
+.fiyat td.ad { vertical-align: top; padding: 10px 16px 0 0; font-weight: 500; line-height: 1.35; border-bottom-color: #D9CEC3; }
+.fiyat .adet { width: 64px; text-align: center; }
+.fiyat td.adet { font-weight: 600; color: var(--murekkep); background: var(--kagit-koyu); }
+.fiyat .tutar { width: 96px; text-align: right; }
+.fiyat td.tutar { font-weight: 500; }
+
+.fiyat-notlar {
+  position: absolute; left: 56px; right: 56px; bottom: 82px;
+  list-style: none; font-size: 10.5px; color: var(--soluk); line-height: 1.6;
+  border-left: 2px solid var(--kirmizi); padding-left: 12px;
+}
+
+/* ---------- Not sayfası (çift sayfa tamamlamak için) ---------- */
+
+.notlar .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
+.notlar .satirlar { margin-top: 40px; }
+.notlar .satirlar i { display: block; height: 44px; border-bottom: 1px solid var(--cizgi); }
+
+/* ---------- Arka kapak ---------- */
+
+.arka { background: var(--kirmizi); color: #fff; }
+.arka .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
+.arka .etiket { color: rgba(255,255,255,.75); }
+.arka h2 { font-family: var(--serif); font-weight: 400; font-size: 58px; line-height: 1.02; margin: 18px 0 14px; }
+.arka .alt-baslik { font-size: 16px; opacity: .85; }
+.arka .bilgiler { margin-top: 70px; border-top: 1px solid rgba(255,255,255,.35); }
+.arka .bilgiler div { display: grid; grid-template-columns: 130px 1fr; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.35); font-size: 16px; }
+.arka .bilgiler dt { font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .7; padding-top: 4px; }
+.arka .bilgiler a { color: #fff; text-decoration: none; }
+.arka .rozetler { display: flex; gap: 12px; margin-top: 44px; }
+.arka .rozetler span { border: 1.5px solid rgba(255,255,255,.8); border-radius: 4px; padding: 10px 16px; font-weight: 700; font-size: 13px; letter-spacing: .06em; }
+.arka .dip { position: absolute; left: 56px; right: 56px; bottom: 56px; display: flex; justify-content: space-between; align-items: flex-end; }
+.arka .dip .logo { background: #fff; color: var(--kirmizi); }
+.arka .dip p { font-size: 11px; opacity: .75; letter-spacing: .06em; text-align: right; }
+
+/* ---------- Fiyat listesindeki ürünlerin görselleri ---------- */
+
+.galeri .galeri-etiket { position: absolute; top: 96px; left: 56px; }
+.galeri .izgara {
+  position: absolute; top: 126px; left: 56px; right: 56px; bottom: 84px;
+  display: grid; gap: 14px;
+}
+.galeri .kutu {
+  display: flex; flex-direction: column; min-height: 0;
+  color: inherit; text-decoration: none;
+  background: #fff; border: 1px solid var(--cizgi); border-radius: 6px; overflow: hidden;
+}
+.galeri .kutu .gorsel { flex: 1; min-height: 0; }
+.galeri .kutu .yazi {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 11px 14px; border-top: 1px solid var(--cizgi); font-size: 12.5px;
+}
+.galeri .kutu .yazi b { color: var(--kirmizi); letter-spacing: .04em; white-space: nowrap; }
+.galeri .kutu .yazi span { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.galeri .kutu .yazi i { font-style: normal; font-size: 10.5px; color: var(--soluk); letter-spacing: .06em; }
