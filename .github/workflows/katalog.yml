@@ -28,7 +28,7 @@ jobs:
     # build.py görselleri macOS'un sips aracıyla küçültüyor; Chrome bu makinede kurulu geliyor
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Tablodan gelen fiyatları yaz
         if: inputs.fiyatlar != ''
@@ -48,8 +48,8 @@ jobs:
           git add kaynak/fiyatlar.json
           git diff --cached --quiet || { git commit -m "Fiyatlar güncellendi (geçerlilik: $GECERLILIK)"; git push; }
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: cikti/web
 
@@ -61,4 +61,4 @@ jobs:
       url: ${{ steps.yayin.outputs.page_url }}
     steps:
       - id: yayin
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
