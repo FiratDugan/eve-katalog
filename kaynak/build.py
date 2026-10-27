@@ -22,6 +22,11 @@ import sys
 import time
 from pathlib import Path
 
+try:  # Web sayfa görselleri için WebP (JPEG'in yaklaşık üçte biri); Pillow yoksa JPEG üretilir
+    from PIL import Image
+except ImportError:
+    Image = None
+
 KAYNAK = Path(__file__).resolve().parent
 KOK = KAYNAK.parent
 GORSELLER = KOK / "gorseller"
@@ -31,7 +36,9 @@ WEB = CIKTI / "web"
 DILLER = ["tr", "en"]
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 SAYFA_GENISLIK = 1240  # web sürümündeki sayfa görsellerinin genişliği (px)
+SAYFA_UZANTI = "webp" if Image else "jpg"
 FIYAT_SATIR_SAYFA = 16  # bir fiyat listesi sayfasına sığan fiyat satırı; fazlası devam sayfasına geçer
+DIZIN_YUKSEKLIK = 700  # bir dizin sayfasındaki tabloya ayrılan yükseklik (px); fazlası sonraki dizin sayfasına geçer
 
 IKONLAR = {
     "visco": '<path d="M3 8c3-2 6 2 9 0s6-2 9 0M3 13c3-2 6 2 9 0s6-2 9 0M3 18c3-2 6 2 9 0s6-2 9 0"/>',
@@ -61,6 +68,20 @@ def img(yol, genislik):
     return f'<img src="_onbellek/{e(kopya.name)}" alt="">'
 
 
+def logo_dosyasi():
+    """Şeffaf logoyu (gorseller/logo.png) 400 px PNG olarak önbelleğe alır; şeffaflık korunur."""
+    kaynak, kopya = GORSELLER / "logo.png", ONBELLEK / "logo-400.png"
+    if not kopya.exists() or kopya.stat().st_mtime < kaynak.stat().st_mtime:
+        ONBELLEK.mkdir(exist_ok=True)
+        subprocess.run(["sips", "-s", "format", "png", "-Z", "400", str(kaynak), "--out", str(kopya)],
+                       check=True, stdout=subprocess.DEVNULL)
+    return kopya
+
+
+def logo():
+    return f'<div class="logo"><img src="_onbellek/{logo_dosyasi().name}" alt="EVE Tekstil"></div>'
+
+
 def kontrol(veri):
     kodlar = [u["kod"] for u in veri["urunler"]]
     tekrar = {k for k in kodlar if kodlar.count(k) > 1}
@@ -73,15 +94,17 @@ def kontrol(veri):
         if not gorseller(u["kod"]):
             print(f"  uyarı: {u['kod']} için görsel yok (gorseller/{u['kod']}_1.jpg bekleniyor)")
         if not u.get("fiyatlar"):
-            print(f"  uyarı: {u['kod']} için fiyat yok, fiyat listesinde görünmeyecek")
+            print(f"  uyarı: {u['kod']} için fiyat yok, fiyat listesinde boş görünecek")
+    gruplar = {g["id"] for g in veri.get("gruplar", [])}
+    for u in veri["urunler"]:
+        if u.get("grup") and u["grup"] not in gruplar:
+            sys.exit(f"HATA: {u['kod']} ürününün grubu tanımlı değil: {u['grup']}")
 
 
 def fiyatlari_yukle(veri):
     """fiyatlar.json'u okur, denetler ve her ürüne kendi fiyat satırlarını ekler.
     Tablodan hatalı veri gelirse derleme durur; yayındaki katalog olduğu gibi kalır."""
     fiyat = json.loads((KAYNAK / "fiyatlar.json").read_text(encoding="utf-8"))
-    if not str(fiyat.get("gecerlilik", "")).strip():
-        sys.exit("HATA: fiyat geçerlilik tarihi boş")
     urunler = {u["kod"]: u for u in veri["urunler"]}
     for u in urunler.values():
         u["fiyatlar"] = []
@@ -89,23 +112,22 @@ def fiyatlari_yukle(veri):
         kod = str(s.get("kod", "")).strip()
         if kod not in urunler:
             sys.exit(f"HATA: fiyat listesindeki '{kod}' kodlu ürün katalogda yok")
-        if not str(s.get("adet", "")).strip():
-            sys.exit(f"HATA: {kod} fiyatında adet boş")
         for para_birimi in ("tl", "usd", "eur"):
             deger = s.get(para_birimi)
+            if deger is None and para_birimi != "tl":
+                continue  # USD/EUR henüz girilmemiş: listede "—" görünür
             if isinstance(deger, bool) or not isinstance(deger, (int, float)) or deger <= 0:
                 sys.exit(f"HATA: {kod} ({s.get('adet')}) için {para_birimi.upper()} fiyatı geçersiz: {deger!r}")
         urunler[kod]["fiyatlar"].append(s)
-    veri["fiyat"] = {"gecerlilik": str(fiyat["gecerlilik"]).strip()}
+    veri["fiyat"] = {"gecerlilik": str(fiyat.get("gecerlilik", "")).strip()}
 
 
 def fiyat_parcalari(urunler):
-    """Fiyatı olan ürünleri, her sayfaya en fazla FIYAT_SATIR_SAYFA satır düşecek şekilde böler."""
+    """Ürünleri, her sayfaya en fazla FIYAT_SATIR_SAYFA satır düşecek şekilde böler.
+    Fiyatı girilmemiş ürün de listede boş bir satırla yer alır."""
     parcalar, parca, satir = [], [], 0
     for u in urunler:
-        n = len(u.get("fiyatlar", []))
-        if not n:
-            continue
+        n = max(1, len(u.get("fiyatlar", [])))
         if parca and satir + n > FIYAT_SATIR_SAYFA:
             parcalar.append(parca)
             parca, satir = [], 0
@@ -117,29 +139,66 @@ def fiyat_parcalari(urunler):
 
 
 def para(x, dil):
+    if x is None:
+        return "—"
     s = f"{x:,.2f}"
     return s.replace(",", "_").replace(".", ",").replace("_", ".") if dil == "tr" else s
 
 
 def sayfa_plani(veri):
     """Sayfa sırasını ve her ürünün sayfa numarasını belirler."""
-    plan = [("kapak", None), ("hakkimizda", None), ("dizin", None)]
+    plan = []
     for kat in veri["kategoriler"]:
         urunler = [u for u in veri["urunler"] if u["kategori"] == kat["id"]]
         if not urunler:
             continue
         plan.append(("bolum", kat))
-        plan += [("urun", u) for u in urunler]
+        # Aynı gruptaki ardışık ürünler (ör. aynı yorganın tek/çift kişilik ölçüsü) tek sayfada
+        sayfalar = []
+        for u in urunler:
+            if u.get("grup") and sayfalar and sayfalar[-1][0].get("grup") == u["grup"]:
+                sayfalar[-1].append(u)
+            else:
+                sayfalar.append([u])
+        plan += [("urun", s) for s in sayfalar]
         # Kategorinin fiyat listesi, son ürünün hemen arkasından gelir
-        # ardından o listedeki ürünlerin görsel sayfası
+        # ardından (kategoride kapatılmadıysa) o listedeki ürünlerin görsel sayfası
         for j, parca in enumerate(fiyat_parcalari(urunler)):
             plan.append(("fiyat", (kat, parca, j > 0)))
-            plan.append(("galeri", (kat, parca)))
+            if kat.get("galeri", True):
+                plan.append(("galeri", (kat, parca)))
+    dizin = [("dizin", parca) for parca in dizin_parcalari(plan)]
+    plan = [("kapak", None), ("hakkimizda", None)] + dizin + plan
     # Sayfa çevirmeli görünümde arka kapak tek başına kalsın diye toplam sayfa çift olmalı
     if (len(plan) + 1) % 2:
         plan.append(("notlar", None))
     plan.append(("arka", None))
     return plan
+
+
+def urun_sayfalari(plan):
+    """Ürün kodu -> ürünün sayfa numarası."""
+    return {u["kod"]: i for i, (tur, us) in enumerate(plan, 1) if tur == "urun" for u in us}
+
+
+def dizin_parcalari(plan):
+    """Dizin satırlarını (plan içindeki sıra numaralarıyla) sayfalara böler.
+    Kategori başlığı sayfanın son satırı olarak kalmaz."""
+    yukseklik = {"bolum": 52, "urun": 35, "fiyat": 35}
+    satirlar = [i for i, (tur, n) in enumerate(plan) if tur in ("bolum", "urun") or (tur == "fiyat" and not n[2])]
+    parcalar, parca, dolu = [], [], 0
+    for i in satirlar:
+        tur, n = plan[i]
+        satir = yukseklik[tur] * (len(n) if tur == "urun" else 1)
+        h = satir + (yukseklik["urun"] if tur == "bolum" else 0)
+        if parca and dolu + h > DIZIN_YUKSEKLIK:
+            parcalar.append(parca)
+            parca, dolu = [], 0
+        parca.append(i)
+        dolu += satir
+    if parca:
+        parcalar.append(parca)
+    return parcalar
 
 
 def alt(m, no):
@@ -150,8 +209,8 @@ def s_kapak(dil, m, no):
     f = VERI["firma"]
     return f'''
 <section class="sayfa kapak" id="p{no}">
-  <div class="kapak-gorsel">{img(GORSELLER / "kapak.jpg", 1800)}</div>
-  <div class="kapak-ust"><div class="logo"><b>EVE</b><i>TEKSTİL</i></div><div class="dil">{dil.upper()}</div></div>
+  <div class="kapak-gorsel">{img(GORSELLER / VERI.get("kapak", "kapak.jpg"), 1800)}</div>
+  <div class="kapak-ust">{logo()}<div class="dil">{dil.upper()}</div></div>
   <div class="kapak-alt">
     <div class="etiket">EVE Tekstil · {f["yil"]}</div>
     <h1>{"<br>".join(e(w) for w in m["katalog"].split(" ", 1))}</h1>
@@ -179,16 +238,21 @@ def s_hakkimizda(dil, m, no):
 </section>'''
 
 
-def s_dizin(dil, m, no, plan):
+def s_dizin(dil, m, no, plan, parca):
+    ilk_dizin = next(i for i, (tur, _) in enumerate(plan, 1) if tur == "dizin")
+    kaydirma = sum(1 for tur, _ in plan if tur == "dizin") + 2  # dizin satırları dizinsiz plana göre numaralı
     satirlar = []
-    for i, (tur, nesne) in enumerate(plan, 1):
+    for j in parca:
+        i = j + kaydirma + 1
+        tur, nesne = plan[i - 1]
         if tur == "bolum":
             satirlar.append(f'<tr class="grup"><td colspan="3">{e(nesne["ad"][dil])}</td></tr>')
         elif tur == "urun":
-            satirlar.append(
-                f'<tr><td class="kod"><a href="#p{i}">{e(nesne["kod"])}</a></td>'
-                f'<td><a href="#p{i}">{e(nesne["ad"][dil])}</a></td><td>{i:02d}</td></tr>'
-            )
+            satirlar += [
+                f'<tr><td class="kod"><a href="#p{i}">{e(u["kod"])}</a></td>'
+                f'<td><a href="#p{i}">{e(u["ad"][dil])}</a></td><td>{i:02d}</td></tr>'
+                for u in nesne
+            ]
         elif tur == "fiyat" and not nesne[2]:
             satirlar.append(
                 f'<tr class="fiyat-satir"><td class="kod"><a href="#p{i}">₺ $ €</a></td>'
@@ -198,7 +262,7 @@ def s_dizin(dil, m, no, plan):
 <section class="sayfa dizin" id="p{no}">
   <div class="icerik">
     <div class="etiket">{e(m["kod"])} · {e(m["urun"])}</div>
-    <h2>{e(m["dizin_baslik"])}</h2>
+    <h2>{e(m["dizin_baslik"])}{f' <span>({e(m["fiyat_devam"])})</span>' if no != ilk_dizin else ""}</h2>
     <p class="aciklama">{e(m["dizin_aciklama"])}</p>
     <table><thead><tr><th>{e(m["kod"])}</th><th>{e(m["urun"])}</th><th>{e(m["sayfa"])}</th></tr></thead>
     <tbody>{"".join(satirlar)}</tbody></table>
@@ -208,66 +272,162 @@ def s_dizin(dil, m, no, plan):
 
 
 def s_bolum(dil, m, no, kat, sira):
-    urunler = [u["kod"] for u in VERI["urunler"] if u["kategori"] == kat["id"]]
-    aralik = urunler[0] if len(urunler) == 1 else f"{urunler[0]} — {urunler[-1]}"
+    n = sum(1 for u in VERI["urunler"] if u["kategori"] == kat["id"])
+    aciklama = kat.get("aciklama", {}).get(dil, "")
     return f'''
 <section class="sayfa bolum" id="p{no}">
   <div class="bolum-gorsel">{img(GORSELLER / kat["gorsel"], 1600)}</div>
   <div class="bolum-metin">
     <div class="bolum-no">{sira:02d}</div>
     <h2>{e(kat["ad"][dil])}</h2>
-    <p>{e(kat["aciklama"][dil])}</p>
-    <div class="kod-araligi">{e(aralik)}</div>
+    {f"<p>{e(aciklama)}</p>" if aciklama else ""}
+    <div class="kod-araligi">{e(m["urun_sayisi"].format(n=n))}</div>
   </div>
   {alt(m, no)}
 </section>'''
 
 
-def s_urun(dil, m, no, u):
+OZELLIK_ALANLARI = ("olcu", "agirlik", "dolgu", "kumas", "paket", "sertlik")
+
+
+def ozellik_degeri(m, o, alan, dil):
+    """Özellik alanının sayfadaki HTML'i; değer yoksa boş metin."""
+    if not o.get(alan):
+        return ""
+    if alan == "sertlik":
+        bar = "".join(f'<i class="{"dolu" if i < o["sertlik"] else ""}"></i>' for i in range(5))
+        return f'<span class="sertlik"><span class="bar">{bar}</span>{e(m["sertlik_etiket"][o["sertlik"] - 1])}</span>'
+    return e(o[alan][dil] if isinstance(o[alan], dict) else o[alan])
+
+
+def s_grup(dil, m, no, us):
+    """Aynı gruptaki ürünler tek sayfada: ortak özellikler bir kez, farklı olanlar ürün ürün."""
+    grup = next(g for g in VERI["gruplar"] if g["id"] == us[0]["grup"])
+    kat = next(k for k in VERI["kategoriler"] if k["id"] == us[0]["kategori"])
+    anahtar = lambda u, a: json.dumps(u["ozellik"].get(a), sort_keys=True, ensure_ascii=False)
+    farkli = [a for a in OZELLIK_ALANLARI if len({anahtar(u, a) for u in us}) > 1]
+    ortak = [a for a in OZELLIK_ALANLARI if a not in farkli and us[0]["ozellik"].get(a)]
+    dl = '<dl class="ozellikler">' + "".join(
+        f'<div><dt>{e(m[a])}</dt><dd>{ozellik_degeri(m, us[0]["ozellik"], a, dil)}</dd></div>' for a in ortak) + "</dl>"
+    aciklamalar = {u["aciklama"][dil] for u in us}
+    aciklama = aciklamalar.pop() if len(aciklamalar) == 1 else ""
+    ikonlar = "".join(
+        f'<li><svg viewBox="0 0 24 24">{IKONLAR[i]}</svg>{e(m["ikon"][i])}</li>' for i in us[0].get("ikonlar", [])
+    )
+    bilgi = (f'<h3>{e(grup["ad"][dil])}</h3>' + (f'<p class="aciklama">{e(aciklama)}</p>' if aciklama else "")
+             + (f'<ul class="ikonlar">{ikonlar}</ul>' if ikonlar else ""))
+    ust = f'<header class="sayfa-ust"><span>{e(kat["ad"][dil])}</span><span>EVE TEKSTİL</span></header>'
+
+    if grup.get("ortak_gorsel"):
+        # Ürünler aynı görselleri paylaşır: görseller bir kez, altında ürün tablosu
+        g = gorseller(us[0]["kod"])
+        dikey = [p for p in g if olcu(p)[1] > olcu(p)[0]]
+        yatay = [p for p in g if p not in dikey]
+        bas = "".join(f"<th>{e(m[a])}</th>" for a in farkli)
+        govde = "".join(
+            f'<tr><td class="kod">{e(u["kod"])}</td><td>{e(u["varyant"][dil])}</td>'
+            + "".join(f"<td>{ozellik_degeri(m, u['ozellik'], a, dil) or '—'}</td>" for a in farkli) + "</tr>"
+            for u in us
+        )
+        tablo = (f'<table class="varyantlar"><thead><tr><th>{e(m["kod"])}</th><th>{e(m["urun"])}</th>{bas}</tr></thead>'
+                 f"<tbody>{govde}</tbody></table>")
+        rozet = f'<div class="kod-rozet">{" · ".join(e(u["kod"]) for u in us)}</div>'
+        return f'''
+<section class="sayfa urun cift grup" id="p{no}" data-kod="{e(us[0]["kod"])}">
+  {ust}
+  <div class="hero">{img(yatay[0] if yatay else (g[0] if g else None), 1300)}{rozet}</div>
+  <div class="dikey-gorsel">{img(dikey[0] if dikey else None, 700)}</div>
+  <div class="metin-kolon">{bilgi}{tablo}{dl}</div>
+  {alt(m, no)}
+</section>'''
+
+    # Her ürünün kendi görseli: yan yana, altında kodu ve farklı özellikleri
+    kutular = "".join(
+        f'<figure><div class="gorsel">{img(next(iter(gorseller(u["kod"])), None), 700)}</div>'
+        f'<figcaption><b>{e(u["kod"])}</b><span>{e(u["varyant"][dil])}</span>'
+        + "".join(f'<div class="fark"><i>{e(m[a])}</i>{ozellik_degeri(m, u["ozellik"], a, dil) or "—"}</div>' for a in farkli)
+        + "</figcaption></figure>"
+        for u in us
+    )
+    return f'''
+<section class="sayfa urun grup ayri" id="p{no}" data-kod="{e(us[0]["kod"])}">
+  {ust}
+  <div class="grup-gorseller" style="grid-template-columns:repeat({len(us)},minmax(0,1fr))">{kutular}</div>
+  <div class="urun-bilgi">
+    <div>{bilgi}</div>
+    {dl}
+  </div>
+  {alt(m, no)}
+</section>'''
+
+
+def s_urun(dil, m, no, us):
+    """Görsel düzeni görsellerin sayısına ve yönüne göre seçilir:
+    3+ görsel: büyük görsel + 2 yan görsel; 1 yatay + 1 dikey: üstte yatay, altta dikey + bilgiler;
+    tek dikey: solda görsel, sağda bilgiler. Gruplu ürünler tek sayfada (s_grup)."""
+    if len(us) > 1:
+        return s_grup(dil, m, no, us)
+    u = us[0]
     kat = next(k for k in VERI["kategoriler"] if k["id"] == u["kategori"])
     g = gorseller(u["kod"])
-    ana, yan = (g[0] if g else None), g[1:3]
-    yan_html = "".join(f"<div>{img(p, 700)}</div>" for p in yan)
+    dikey = [p for p in g if olcu(p)[1] > olcu(p)[0]]
+    yatay = [p for p in g if p not in dikey]
     o = u["ozellik"]
-    sertlik = "".join(f'<i class="{"dolu" if i < o["sertlik"] else ""}"></i>' for i in range(3))
-    ozellikler = [
-        (m["kod"], e(u["kod"]), "kod-satir"),
-        (m["olcu"], e(o["olcu"]), ""),
-        (m["dolgu"], e(o["dolgu"][dil]), ""),
-        (m["kilif"], e(o["kilif"][dil]), ""),
-        (m["yikama"], e(o["yikama"][dil]), ""),
-        (m["yas"], e(o["yas"][dil]), ""),
-        (m["sertlik"], f'<span class="sertlik"><span class="bar">{sertlik}</span>{e(m["sertlik_etiket"][o["sertlik"] - 1])}</span>', ""),
-    ]
-    dl = "".join(f'<div class="{c}"><dt>{e(a)}</dt><dd>{b}</dd></div>' for a, b, c in ozellikler)
+    ozellikler = [(m["kod"], e(u["kod"]), "kod-satir")]
+    ozellikler += [(m[a], ozellik_degeri(m, o, a, dil), "") for a in OZELLIK_ALANLARI if o.get(a)]
+    dl = "<dl class=\"ozellikler\">" + "".join(f'<div class="{c}"><dt>{e(a)}</dt><dd>{b}</dd></div>' for a, b, c in ozellikler) + "</dl>"
     ikonlar = "".join(
         f'<li><svg viewBox="0 0 24 24">{IKONLAR[i]}</svg>{e(m["ikon"][i])}</li>' for i in u.get("ikonlar", [])
     )
+    aciklama = u["aciklama"][dil]
+    bilgi = (f'<h3>{e(u["ad"][dil])}</h3>' + (f'<p class="aciklama">{e(aciklama)}</p>' if aciklama else "")
+             + (f'<ul class="ikonlar">{ikonlar}</ul>' if ikonlar else ""))
+    rozet = f'<div class="kod-rozet">{e(u["kod"])}</div>'
+    ust = f'<header class="sayfa-ust"><span>{e(kat["ad"][dil])}</span><span>EVE TEKSTİL</span></header>'
+
+    if len(g) <= 2 and dikey:
+        if yatay:
+            return f'''
+<section class="sayfa urun cift" id="p{no}" data-kod="{e(u["kod"])}">
+  {ust}
+  <div class="hero">{img(yatay[0], 1300)}{rozet}</div>
+  <div class="dikey-gorsel">{img(dikey[0], 700)}</div>
+  <div class="metin-kolon">{bilgi}{dl}</div>
+  {alt(m, no)}
+</section>'''
+        return f'''
+<section class="sayfa urun dikey" id="p{no}" data-kod="{e(u["kod"])}">
+  {ust}
+  <div class="dikey-gorsel">{img(dikey[0], 900)}{rozet}</div>
+  <div class="metin-kolon">{bilgi}</div>
+  {dl}
+  {alt(m, no)}
+</section>'''
+
+    sirali = dikey + yatay
+    ana, yan = (sirali[0] if sirali else None), sirali[1:3]
+    yan_html = "".join(f"<div>{img(p, 700)}</div>" for p in yan)
     return f'''
 <section class="sayfa urun" id="p{no}" data-kod="{e(u["kod"])}">
-  <header class="sayfa-ust"><span>{e(kat["ad"][dil])}</span><span>EVE TEKSTİL</span></header>
+  {ust}
   <div class="urun-gorseller{"" if yan else " tek"}">
-    <div class="ana">{img(ana, 1300)}<div class="kod-rozet">{e(u["kod"])}</div></div>
+    <div class="ana">{img(ana, 1300)}{rozet}</div>
     {f'<div class="yan">{yan_html}</div>' if yan else ""}
   </div>
   <div class="urun-bilgi">
-    <div>
-      <h3>{e(u["ad"][dil])}</h3>
-      <p class="aciklama">{e(u["aciklama"][dil])}</p>
-      <ul class="ikonlar">{ikonlar}</ul>
-    </div>
-    <dl class="ozellikler">{dl}</dl>
+    <div>{bilgi}</div>
+    {dl}
   </div>
   {alt(m, no)}
 </section>'''
 
 
 def s_fiyat(dil, m, no, kat, urunler, devam, plan):
-    urun_sayfa = {u["kod"]: i for i, (tur, u) in enumerate(plan, 1) if tur == "urun"}
+    urun_sayfa = urun_sayfalari(plan)
     f = VERI["fiyat"]
     govde = []
     for u in urunler:
-        satirlar = u["fiyatlar"]
+        satirlar = u["fiyatlar"] or [{"adet": "", "tl": None, "usd": None, "eur": None}]
         for k, fy in enumerate(satirlar):
             tl, usd, eur = fy["tl"], fy["usd"], fy["eur"]
             bas = ""
@@ -275,7 +435,7 @@ def s_fiyat(dil, m, no, kat, urunler, devam, plan):
                 bas = (f'<td class="kod" rowspan="{len(satirlar)}"><a href="#p{urun_sayfa[u["kod"]]}">{e(u["kod"])}</a></td>'
                        f'<td class="ad" rowspan="{len(satirlar)}">{e(u["ad"][dil])}</td>')
             govde.append(
-                f'<tr class="{"ilk" if k == 0 else ""}">{bas}<td class="adet">{e(str(fy["adet"]))}</td>'
+                f'<tr class="{"ilk" if k == 0 else ""}">{bas}<td class="adet">{e(str(fy.get("adet") or "—"))}</td>'
                 f'<td class="tutar">{para(tl, dil)}</td><td class="tutar">{para(usd, dil)}</td><td class="tutar">{para(eur, dil)}</td></tr>'
             )
     notlar = "".join(f"<li>{e(n)}</li>" for n in m["fiyat_notlar"])
@@ -286,7 +446,7 @@ def s_fiyat(dil, m, no, kat, urunler, devam, plan):
   <div class="icerik">
     <div class="etiket">{e(m["fiyat_baslik"])}</div>
     <h2>{baslik}</h2>
-    <p class="gecerlilik">{e(m["fiyat_gecerlilik"].format(tarih=f["gecerlilik"]))}</p>
+    {f'<p class="gecerlilik">{e(m["fiyat_gecerlilik"].format(tarih=f["gecerlilik"]))}</p>' if f["gecerlilik"] else ""}
     <p class="aciklama">{e(m["fiyat_aciklama"])}</p>
     <table>
       <thead><tr><th>{e(m["kod"])}</th><th>{e(m["urun"])}</th><th class="adet">{e(m["adet"])}</th>
@@ -340,7 +500,10 @@ def galeri_duzeni(n, w=682, h=860, bosluk=14):
 
 
 def s_galeri(dil, m, no, kat, urunler, plan):
-    urun_sayfa = {u["kod"]: i for i, (tur, u) in enumerate(plan, 1) if tur == "urun"}
+    urun_sayfa = urun_sayfalari(plan)
+    if kat.get("galeri_sira"):
+        sira = kat["galeri_sira"]
+        urunler = sorted(urunler, key=lambda u: sira.index(u["kod"]) if u["kod"] in sira else len(sira))
     sutun, satir, ilk_genislik, oranlar = galeri_duzeni(len(urunler))
     kutular = []
     for k, u in enumerate(urunler):
@@ -387,7 +550,7 @@ def s_arka(dil, m, no):
     <dl class="bilgiler">{dl}</dl>
     <div class="rozetler">{rozetler}</div>
   </div>
-  <div class="dip"><div class="logo"><b>EVE</b><i>TEKSTİL</i></div><p>{e(m["katalog"])} {f["yil"]}<br>{e(m["ornek_not"])}</p></div>
+  <div class="dip">{logo()}<p>{e(m["katalog"])} {f["yil"]}<br>{e(m["ornek_not"])}</p></div>
 </section>'''
 
 
@@ -400,7 +563,7 @@ def katalog_html(dil, plan):
         elif tur == "hakkimizda":
             parcalar.append(s_hakkimizda(dil, m, no))
         elif tur == "dizin":
-            parcalar.append(s_dizin(dil, m, no, plan))
+            parcalar.append(s_dizin(dil, m, no, plan, nesne))
         elif tur == "bolum":
             bolum_sira += 1
             parcalar.append(s_bolum(dil, m, no, nesne, bolum_sira))
@@ -463,20 +626,23 @@ def main():
             png = hedef / f"{no:02d}.png"
             chrome(f"--force-device-scale-factor={SAYFA_GENISLIK / 794}", "--window-size=794,1123",
                    f"--screenshot={png}", f"{url}?sayfa={no}")
-            subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82",
-                            str(png), "--out", str(png.with_suffix(".jpg"))], check=True, stdout=subprocess.DEVNULL)
+            if Image:
+                Image.open(png).convert("RGB").save(png.with_suffix(".webp"), "WEBP", quality=80, method=5)
+            else:
+                subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "82",
+                                str(png), "--out", str(png.with_suffix(".jpg"))], check=True, stdout=subprocess.DEVNULL)
             png.unlink()
-        print(f"  web sayfaları ({dil}): {len(plan)}")
+        print(f"  web sayfaları ({dil}): {len(plan)} {SAYFA_UZANTI}")
 
     # Web görüntüleyici
     veri_js = {
         "sayfaSayisi": len(plan),
+        "uzanti": SAYFA_UZANTI,
         "urunler": [
             {"kod": u["kod"], "sayfa": i, "ad": {d: u["ad"][d] for d in DILLER}}
-            for i, (tur, u) in enumerate(plan, 1) if tur == "urun"
+            for i, (tur, us) in enumerate(plan, 1) if tur == "urun" for u in us
         ],
         "pdf": {d: f"pdf/Eve-Tekstil-Katalog-{d.upper()}.pdf" for d in DILLER},
-        "whatsapp": VERI["firma"]["whatsapp"],
         # Güncellemeden sonra tarayıcılar eski sayfa görsellerini/PDF'i önbellekten göstermesin
         "surum": str(int(time.time())),
     }
@@ -485,6 +651,7 @@ def main():
     for dosya in ["goruntuleyici.css", "goruntuleyici.js"]:
         shutil.copy(KAYNAK / "web" / dosya, WEB / dosya)
     shutil.copy(KAYNAK / "vendor" / "page-flip.browser.js", WEB / "page-flip.browser.js")
+    shutil.copy(logo_dosyasi(), WEB / "logo.png")
     print(f"Tamam → {CIKTI}")
 
 

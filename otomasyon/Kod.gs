@@ -89,12 +89,16 @@ function tabloyuOku() {
     const adet = String(r[2]).trim();
     if (!kod) throw new Error(`${satirNo}. satırda ürün kodu boş.`);
     if (gecerliKodlar && !gecerliKodlar.has(kod)) throw new Error(`${satirNo}. satırdaki "${kod}" kodu katalogda yok.`);
-    if (!adet) throw new Error(`${satirNo}. satırda adet boş.`);
-    const s = { kod: kod, adet: adet };
+    const s = { kod: kod, adet: adet };  // adet boş olabilir
     ['tl', 'usd', 'eur'].forEach((pb, k) => {
       const v = r[3 + k];
+      // USD/EUR henüz girilmemiş olabilir: katalogda "—" görünür. TL zorunlu.
+      if (pb !== 'tl' && String(v).trim() === '') {
+        s[pb] = null;
+        return;
+      }
       if (typeof v !== 'number' || !(v > 0)) {
-        throw new Error(`${satirNo}. satırda (${kod}, ${adet}) ${pb.toUpperCase()} fiyatı sayı değil ya da boş: "${v}"`);
+        throw new Error(`${satirNo}. satırda (${kod}${adet ? ', ' + adet : ''}) ${pb.toUpperCase()} fiyatı sayı değil ya da boş: "${v}"`);
       }
       s[pb] = Math.round(v * 100) / 100;
     });
@@ -161,7 +165,7 @@ function tabloyuHazirla() {
   katalog.urunler.forEach((u) => { adlar[u.kod] = u.ad.tr; });
 
   const fiyat = sayfaSifirla(ss, SAYFA_FIYAT);
-  const satirlar = fiyatlar.satirlar.map((s) => [s.kod, adlar[s.kod] || '', s.adet, s.tl, s.usd, s.eur]);
+  const satirlar = fiyatlar.satirlar.map((s) => [s.kod, adlar[s.kod] || '', s.adet, s.tl, s.usd ?? '', s.eur ?? '']);
   fiyat.getRange(1, 1, 1, BASLIKLAR.length).setValues([BASLIKLAR])
     .setFontWeight('bold').setBackground('#B0141C').setFontColor('#FFFFFF');
   fiyat.getRange(2, 1, satirlar.length, BASLIKLAR.length).setValues(satirlar);

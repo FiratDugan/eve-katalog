@@ -30,6 +30,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Pillow: web sayfa görselleri webp olarak kaydedilir (yoksa daha ağır jpg'ye düşer)
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install pillow
+
       - name: Tablodan gelen fiyatları yaz
         if: inputs.fiyatlar != ''
         env:

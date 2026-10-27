@@ -1,68 +1,152 @@
 {
-  "gecerlilik": "11.10.2026",
+  "gecerlilik": "",
   "satirlar": [
     {
-      "kod": "EVE-501",
-      "adet": "1+",
-      "tl": 1699,
-      "usd": 40.25,
-      "eur": 35
+      "kod": "EVE-11",
+      "adet": "1",
+      "tl": 150.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-501",
-      "adet": "10+",
-      "tl": 2000,
-      "usd": 34.67,
-      "eur": 29.75
+      "kod": "EVE-LUX-6",
+      "adet": "1",
+      "tl": 180.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-501",
-      "adet": "50+",
-      "tl": 1299,
-      "usd": 31.08,
-      "eur": 26.67
+      "kod": "YellowDream02",
+      "adet": "1",
+      "tl": 180.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-502",
-      "adet": "1+",
-      "tl": 1599,
-      "usd": 38.25,
-      "eur": 32.83
+      "kod": "evecizgilisaten4adet",
+      "adet": "1",
+      "tl": 160.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-502",
-      "adet": "10+",
-      "tl": 1449,
-      "usd": 34.67,
-      "eur": 29.75
+      "kod": "BMB-101",
+      "adet": "1",
+      "tl": 150.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-502",
-      "adet": "50+",
-      "tl": 1299,
-      "usd": 31.08,
-      "eur": 26.67
+      "kod": "BMBGRİ-101",
+      "adet": "1",
+      "tl": 150.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "EveGold01",
+      "adet": "",
+      "tl": 1200.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "jellivisco01",
+      "adet": "",
+      "tl": 1500.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "PLÜTON001",
+      "adet": "",
+      "tl": 1200.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "JÜPİTER001",
+      "adet": "",
+      "tl": 1200.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "MARS001",
+      "adet": "",
+      "tl": 1200.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "Frozone01",
+      "adet": "",
+      "tl": 1500.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "HYPNOZZ001",
+      "adet": "",
+      "tl": 1500.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "EveViscoYeniSeri01",
+      "adet": "",
+      "tl": 250.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "Eveviskoo1113",
+      "adet": "",
+      "tl": 480.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "Evetekstilyorgan1",
+      "adet": "",
+      "tl": 500.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "EVE-402",
+      "adet": "",
+      "tl": 800.0,
+      "usd": null,
+      "eur": null
+    },
+    {
+      "kod": "AYHAMİLEVEMZİRMEYASTIĞI",
+      "adet": "",
+      "tl": 1400.0,
+      "usd": null,
+      "eur": null
     },
     {
       "kod": "EVE-503",
-      "adet": "1+",
-      "tl": 1599,
-      "usd": 38.25,
-      "eur": 32.83
+      "adet": "",
+      "tl": 1400.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-503",
-      "adet": "10+",
-      "tl": 1449,
-      "usd": 34.67,
-      "eur": 29.75
+      "kod": "EVE-1001",
+      "adet": "",
+      "tl": 200.0,
+      "usd": null,
+      "eur": null
     },
     {
-      "kod": "EVE-503",
-      "adet": "50+",
-      "tl": 1299,
-      "usd": 31.08,
-      "eur": 26.67
+      "kod": "EVE-1101",
+      "adet": "",
+      "tl": 120.0,
+      "usd": null,
+      "eur": null
     }
   ]
 }

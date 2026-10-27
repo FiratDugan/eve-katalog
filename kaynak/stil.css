@@ -74,14 +74,9 @@ body.tek .sayfa.goster { display: block; }
 }
 .sayfa-alt .no { font-weight: 700; color: var(--murekkep); letter-spacing: .05em; }
 
-.logo {
-  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
-  width: 78px; height: 78px; border-radius: 50%;
-  background: var(--kirmizi); color: #fff;
-  font-weight: 700; line-height: 1;
-}
-.logo b { font-size: 22px; letter-spacing: .14em; margin-left: .14em; }
-.logo i { font-style: normal; font-size: 6.5px; letter-spacing: .42em; margin: 5px 0 0 .42em; }
+/* Şeffaf logo (gorseller/logo.png): fotoğraf ve kırmızı zemin üstünde okunsun diye açık daire içinde */
+.logo { width: 92px; height: 92px; border-radius: 50%; background: #fff; overflow: hidden; }
+.logo img { object-fit: contain; }
 
 /* ---------- Kapak ---------- */
 
@@ -273,7 +268,7 @@ body.tek .sayfa.goster { display: block; }
 .arka .rozetler { display: flex; gap: 12px; margin-top: 44px; }
 .arka .rozetler span { border: 1.5px solid rgba(255,255,255,.8); border-radius: 4px; padding: 10px 16px; font-weight: 700; font-size: 13px; letter-spacing: .06em; }
 .arka .dip { position: absolute; left: 56px; right: 56px; bottom: 56px; display: flex; justify-content: space-between; align-items: flex-end; }
-.arka .dip .logo { background: #fff; color: var(--kirmizi); }
+.arka .dip .logo { width: 84px; height: 84px; }
 .arka .dip p { font-size: 11px; opacity: .75; letter-spacing: .06em; text-align: right; }
 
 /* ---------- Fiyat listesindeki ürünlerin görselleri ---------- */
@@ -296,3 +291,59 @@ body.tek .sayfa.goster { display: block; }
 .galeri .kutu .yazi b { color: var(--kirmizi); letter-spacing: .04em; white-space: nowrap; }
 .galeri .kutu .yazi span { flex: 1; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .galeri .kutu .yazi i { font-style: normal; font-size: 10.5px; color: var(--soluk); letter-spacing: .06em; }
+
+/* ---------- Ürün sayfası: 1 yatay + 1 dikey görsel ---------- */
+
+.urun .hero, .urun .dikey-gorsel { position: absolute; border-radius: 6px; overflow: hidden; }
+.urun.cift .hero { top: 72px; left: 56px; right: 56px; height: 384px; }
+.urun.cift .dikey-gorsel { top: 480px; left: 56px; width: 250px; height: 444px; }
+.urun.cift .metin-kolon { position: absolute; top: 480px; left: 334px; right: 56px; bottom: 80px; }
+.urun .metin-kolon h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.08; letter-spacing: -.01em; margin: -4px 0 14px; }
+.urun .metin-kolon .aciklama { font-size: 13.5px; color: #4A413C; }
+.urun .metin-kolon .ikonlar { margin-top: 18px; }
+.urun.cift .metin-kolon .ozellikler { margin-top: 24px; }
+
+/* ---------- Ürün sayfası: tek dikey görsel ---------- */
+
+.urun.dikey .dikey-gorsel { top: 72px; left: 56px; width: 380px; height: 675px; }
+.urun.dikey .metin-kolon { position: absolute; top: 72px; left: 464px; right: 56px; }
+.urun.dikey > .ozellikler { position: absolute; top: 784px; left: 56px; right: 56px; }
+
+.sertlik .bar i { width: 16px; }
+
+/* ---------- Çok sayfalı dizin ---------- */
+
+.dizin h2 span { font-size: 22px; color: var(--soluk); }
+.dizin .aciklama { margin-bottom: 28px; }
+.dizin td { padding: 7px 0; font-size: 13.5px; }
+.dizin tr.grup td { padding: 18px 0 6px; font-size: 18px; }
+
+/* Uzun mevcut ürün kodları (ör. evecizgilisaten4adet) için geniş kod sütunu */
+.dizin td.kod { width: 236px; padding-right: 16px; }
+.fiyat td.kod { width: 196px; padding-right: 14px; }
+
+/* ---------- Gruplu ürün sayfası ---------- */
+
+/* Her ürünün kendi görseli (ör. 01 · 02 · 03): yan yana, altında kod ve farklı özellik */
+.grup-gorseller { position: absolute; top: 72px; left: 56px; right: 56px; display: grid; gap: 14px; }
+.grup-gorseller figure { min-width: 0; }
+.grup-gorseller .gorsel { height: 470px; border-radius: 6px; overflow: hidden; }
+.grup-gorseller figcaption { padding-top: 12px; font-size: 12.5px; }
+.grup-gorseller figcaption b { color: var(--kirmizi); letter-spacing: .04em; margin-right: 8px; }
+.grup-gorseller figcaption span { font-weight: 500; }
+.grup-gorseller .fark { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--cizgi); }
+.grup-gorseller .fark i { font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--soluk); }
+.urun.ayri .urun-bilgi { top: 670px; }
+.grup-gorseller .fark { flex-direction: column; align-items: flex-start; gap: 6px; }
+.grup-gorseller .sertlik { white-space: nowrap; gap: 8px; }
+.grup-gorseller .sertlik .bar i { width: 12px; }
+
+/* Ortak görselli ürünler (ör. tek/çift kişilik yorgan): ürün tablosu */
+.varyantlar { width: 100%; border-collapse: collapse; margin-top: 22px; font-size: 12.5px; }
+.varyantlar th {
+  text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--soluk); padding: 0 12px 8px 0; border-bottom: 1.5px solid var(--murekkep);
+}
+.varyantlar td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--cizgi); font-weight: 500; }
+.varyantlar td.kod { color: var(--kirmizi); font-weight: 700; letter-spacing: .04em; }
+.urun.grup .varyantlar + .ozellikler { margin-top: 22px; }

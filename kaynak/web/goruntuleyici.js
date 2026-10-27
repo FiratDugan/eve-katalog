@@ -7,20 +7,16 @@
   const METIN = {
     tr: {
       baslik: 'Ürün Kataloğu',
-      ara: 'Ürün kodu ara (örn. EVE-501)',
+      ara: 'Ürün kodu ara (örn. EVE-302)',
       pdf: 'PDF İndir',
       bulunamadi: 'Bu kodla ürün bulunamadı',
-      sor: (kod) => `${kod} için WhatsApp'tan sor`,
-      mesaj: (kod) => `Merhaba, katalogdaki ${kod} kodlu ürün hakkında bilgi almak istiyorum.`,
       onceki: 'Önceki sayfa', sonraki: 'Sonraki sayfa', sayfa: 'Sayfa'
     },
     en: {
       baslik: 'Product Catalogue',
-      ara: 'Search product code (e.g. EVE-501)',
+      ara: 'Search product code (e.g. EVE-302)',
       pdf: 'Download PDF',
       bulunamadi: 'No product found with this code',
-      sor: (kod) => `Ask about ${kod} on WhatsApp`,
-      mesaj: (kod) => `Hello, I would like information about product ${kod} in your catalogue.`,
       onceki: 'Previous page', sonraki: 'Next page', sayfa: 'Page'
     }
   };
@@ -30,7 +26,6 @@
   const girdi = $('.ara input');
   const hata = $('.ara-hata');
   const sayac = $('.sayac');
-  const sorBtn = $('.sor');
   const oncekiBtn = $('.ok.onceki');
   const sonrakiBtn = $('.ok.sonraki');
 
@@ -73,7 +68,7 @@
       d.className = 'kitap-sayfa';
       const img = document.createElement('img');
       img.alt = `${METIN[dil].sayfa} ${i}`;
-      img.dataset.src = `sayfalar/${dil}/${iki(i)}.jpg?v=${K.surum}`;
+      img.dataset.src = `sayfalar/${dil}/${iki(i)}.${K.uzanti || 'jpg'}?v=${K.surum}`;
       d.appendChild(img);
       kitap.appendChild(d);
       sayfalar.push(d);
@@ -97,16 +92,47 @@
     // dönüp kitaptan taşıyor. Katalog bir broşür olduğu için tüm sayfaları kağıt gibi çeviriyoruz.
     pf.getPageCollection().getPages().forEach((p) => { p.setDensity('soft'); p.setDrawingDensity('soft'); });
     pf.on('flip', (e) => guncelle(e.data));
+    // Sayfa tutulup çevrilmeye başlarken ilerideki sayfaları hazırlamaya başla (çevirme bitmesini bekleme)
+    pf.on('changeState', (e) => { if (e.data !== 'read') yukle(pf.getCurrentPageIndex()); });
     pf.on('init', () => guncelle(baslangic));
   }
 
-  // Sadece görünen sayfanın çevresindeki görselleri indir
+  // Görünen sayfanın çevresindeki görselleri, en yakından başlayarak az sayıda eşzamanlı indir.
+  // İleri yönde daha çok sayfa hazırlanır; inen görsel ekrana gelmeden çözülür (çevirirken takılmasın).
+  const GERI = 2, ILERI = 8, ESZAMANLI = 3;
+  let kuyruk = [], inen = 0;
+
   function yukle(i, liste) {
     const sayfalar = liste || alan.querySelectorAll('.kitap-sayfa');
-    for (let j = Math.max(0, i - 2); j <= Math.min(N - 1, i + 3); j++) {
+    const sira = [];
+    for (let j = Math.max(0, i - GERI); j <= Math.min(N - 1, i + ILERI); j++) sira.push(j);
+    sira.sort((a, b) => Math.abs(a - i) - Math.abs(b - i) || a - b);
+    kuyruk = sira.map((j) => sayfalar[j] && sayfalar[j].querySelector('img'))
+      .filter((img) => img && !img.getAttribute('src'));
+    // Ekranda görünecek sayfalar beklemeden, öncelikli istenir
+    gorunenler(i).forEach((j) => {
       const img = sayfalar[j] && sayfalar[j].querySelector('img');
-      if (img && !img.getAttribute('src')) img.src = img.dataset.src;
-    }
+      if (img && !img.getAttribute('src')) { img.fetchPriority = 'high'; indir(img); }
+    });
+    kuyrukIsle();
+  }
+
+  function indir(img) {
+    kuyruk = kuyruk.filter((x) => x !== img);
+    inen++;
+    // Kuyruk indirme bitince ilerler; çözme beklenmez (görünmeyen sayfada çözme sinyali gecikebilir)
+    const bitti = () => {
+      img.onload = img.onerror = null;
+      inen--;
+      if (img.decode) img.decode().catch(() => {});
+      kuyrukIsle();
+    };
+    img.onload = img.onerror = bitti;
+    img.src = img.dataset.src;
+  }
+
+  function kuyrukIsle() {
+    while (inen < ESZAMANLI && kuyruk.length) indir(kuyruk[0]);
   }
 
   function gorunenler(i) {
@@ -124,13 +150,6 @@
     sonrakiBtn.disabled = g[g.length - 1] === N - 1;
 
     const urun = K.urunler.find((u) => g.includes(u.sayfa - 1));
-    if (urun) {
-      sorBtn.hidden = false;
-      sorBtn.querySelector('span').textContent = METIN[dil].sor(urun.kod);
-      sorBtn.href = `https://wa.me/${K.whatsapp}?text=${encodeURIComponent(METIN[dil].mesaj(urun.kod))}`;
-    } else {
-      sorBtn.hidden = true;
-    }
     const hash = urun ? `#${urun.kod}` : (g[0] > 0 ? `#s${g[0] + 1}` : '');
     history.replaceState(null, '', `?dil=${dil}${hash}`);
   }

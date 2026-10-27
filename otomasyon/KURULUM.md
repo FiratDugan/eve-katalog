@@ -81,12 +81,12 @@ Yanlış fiyat yayınlandıysa tablodan doğru fiyatlarla tekrar "Kataloğu gün
 4. 3–5 dakika sonra **Katalog > Son güncellemenin durumu** > "Tamamlandı".
 5. Katalog linkini yenile: fiyat listesi sayfası ve PDF yeni fiyatı gösterir.
 
-Hata denemesi: bir USD hücresini boşalt ya da `EVE-999` gibi olmayan bir kod yaz, güncellemeye bas. Tablo hangi satırda sorun olduğunu söyler, hiçbir şey gönderilmez.
+Hata denemesi: bir TL hücresini boşalt ya da `EVE-999` gibi olmayan bir kod yaz, güncellemeye bas. Tablo hangi satırda sorun olduğunu söyler, hiçbir şey gönderilmez.
 
 ## Firmaya anlatılacak kısa kullanım
 
 > Fiyat değiştiğinde:
-> 1. **Fiyatlar** sayfasında TL, USD ve EUR fiyatlarını yazın. Üçü de dolu olmalı.
+> 1. **Fiyatlar** sayfasında TL, USD ve EUR fiyatlarını yazın. TL zorunlu; USD/EUR henüz belli değilse boş bırakılabilir.
 > 2. **Ayarlar** sayfasında geçerlilik tarihini güncelleyin.
 > 3. **Katalog > Kataloğu güncelle**'ye basın.
 >

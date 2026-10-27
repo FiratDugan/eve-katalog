@@ -7,30 +7,70 @@
     "whatsapp": "905320666899",
     "eposta": "info@evetekstil.com",
     "web": "evetekstil.com",
-    "adres": { "tr": "Kısıkköy Mobilyacılar Sitesi, İzmir / Türkiye", "en": "Kısıkköy Furniture District, İzmir / Türkiye" },
-    "slogan": { "tr": "Nevresimden yastığa, evinizin her köşesi için.", "en": "From bedding to pillows, for every corner of your home." },
-    "sertifikalar": ["OEKO-TEX®", "ISO 9001", "CE"]
+    "adres": {
+      "tr": "Kısıkköy Mobilyacılar Sitesi, İzmir / Türkiye",
+      "en": "Kısıkköy Furniture District, İzmir / Türkiye"
+    },
+    "slogan": {
+      "tr": "Nevresimden yastığa, evinizin her köşesi için.",
+      "en": "From bedding to pillows, for every corner of your home."
+    },
+    "sertifikalar": [
+      "OEKO-TEX®",
+      "ISO 9001",
+      "CE"
+    ]
   },
-
   "metin": {
     "tr": {
       "katalog": "Ürün Kataloğu",
       "hakkimizda_etiket": "Hakkımızda",
       "notlar": "Notlar",
-      "ikon": { "visco": "Visco hafızalı sünger", "yikanabilir": "Yıkanabilir kılıf", "nefes": "Nefes alan kumaş", "oeko": "OEKO-TEX® sertifikalı" },
+      "ikon": {
+        "visco": "Visco hafızalı sünger",
+        "yikanabilir": "Yıkanabilir kılıf",
+        "nefes": "Nefes alan kumaş",
+        "oeko": "OEKO-TEX® sertifikalı"
+      },
       "hakkimizda_baslik": "2001'den bu yana uyku için üretiyoruz.",
       "hakkimizda": [
         "EVE SER Tekstil, 2001 yılında vatka üretimi geleneğinin ev tekstiline uzanan bir devamı olarak İzmir'de kuruldu.",
         "Bugün yastık, yorgan, alez ve dolgu malzemelerini kendi tesisimizde üretiyoruz. Üretimde kullandığımız elyaf açma, boncuk elyaf ve yastık dolum makinelerini de kendimiz imal edip ihraç ediyoruz.",
         "Perakende ve toptan müşterilerimize rekabetçi fiyat, kontrol edilmiş kalite ve hızlı teslimat sunuyoruz."
       ],
-      "rakamlar": [["2001", "kuruluş yılı"], ["100%", "kendi üretimimiz"], ["3", "uluslararası sertifika"]],
+      "rakamlar": [
+        [
+          "2001",
+          "kuruluş yılı"
+        ],
+        [
+          "100%",
+          "kendi üretimimiz"
+        ],
+        [
+          "3",
+          "uluslararası sertifika"
+        ]
+      ],
       "sertifika_baslik": "Sertifikalar",
       "dizin_baslik": "Ürün Kodu Dizini",
       "dizin_aciklama": "Sipariş ve bilgi talepleriniz için ürün kodunu belirtmeniz yeterlidir.",
-      "kod": "Kod", "urun": "Ürün", "sayfa": "Sayfa",
-      "olcu": "Ölçü", "dolgu": "Dolgu", "kilif": "Kılıf", "sertlik": "Sertlik", "yikama": "Yıkama", "yas": "Yaş grubu",
-      "sertlik_etiket": ["Yumuşak", "Orta", "Sert"],
+      "kod": "Kod",
+      "urun": "Ürün",
+      "sayfa": "Sayfa",
+      "olcu": "Ölçü",
+      "dolgu": "Dolgu",
+      "kilif": "Kılıf",
+      "sertlik": "Sertlik",
+      "yikama": "Yıkama",
+      "yas": "Yaş grubu",
+      "sertlik_etiket": [
+        "Yumuşak",
+        "Yumuşak-Orta",
+        "Orta",
+        "Orta-Sert",
+        "Sert"
+      ],
       "fiyat_baslik": "Fiyat Listesi",
       "galeri_etiket": "Fiyat listesindeki ürünler",
       "fiyat_devam": "devamı",
@@ -43,26 +83,61 @@
       ],
       "iletisim_baslik": "Sipariş ve bilgi için",
       "iletisim_alt": "Ürün kodunu belirterek bize ulaşın.",
-      "ornek_not": "Örnek katalog · görseller ve ürün bilgileri temsilidir"
+      "ornek_not": "Taslak katalog · ürün bilgileri henüz tamamlanmadı",
+      "agirlik": "Ağırlık",
+      "kumas": "Kumaş",
+      "paket": "Paketleme",
+      "urun_sayisi": "{n} ürün"
     },
     "en": {
       "katalog": "Product Catalogue",
       "hakkimizda_etiket": "About us",
       "notlar": "Notes",
-      "ikon": { "visco": "Visco memory foam", "yikanabilir": "Washable cover", "nefes": "Breathable fabric", "oeko": "OEKO-TEX® certified" },
+      "ikon": {
+        "visco": "Visco memory foam",
+        "yikanabilir": "Washable cover",
+        "nefes": "Breathable fabric",
+        "oeko": "OEKO-TEX® certified"
+      },
       "hakkimizda_baslik": "Making sleep products since 2001.",
       "hakkimizda": [
         "EVE SER Tekstil was founded in İzmir in 2001, growing out of a family tradition of wadding production into home textile manufacturing.",
         "Today we produce pillows, duvets, mattress protectors and filling materials in our own facility. We also build and export the fibre opening, ball fibre and pillow filling machines used in production.",
         "We offer retail and wholesale customers competitive prices, controlled quality and fast delivery."
       ],
-      "rakamlar": [["2001", "founded"], ["100%", "in-house production"], ["3", "international certificates"]],
+      "rakamlar": [
+        [
+          "2001",
+          "founded"
+        ],
+        [
+          "100%",
+          "in-house production"
+        ],
+        [
+          "3",
+          "international certificates"
+        ]
+      ],
       "sertifika_baslik": "Certificates",
       "dizin_baslik": "Product Code Index",
       "dizin_aciklama": "Simply quote the product code for orders and enquiries.",
-      "kod": "Code", "urun": "Product", "sayfa": "Page",
-      "olcu": "Size", "dolgu": "Filling", "kilif": "Cover", "sertlik": "Firmness", "yikama": "Care", "yas": "Age group",
-      "sertlik_etiket": ["Soft", "Medium", "Firm"],
+      "kod": "Code",
+      "urun": "Product",
+      "sayfa": "Page",
+      "olcu": "Size",
+      "dolgu": "Filling",
+      "kilif": "Cover",
+      "sertlik": "Firmness",
+      "yikama": "Care",
+      "yas": "Age group",
+      "sertlik_etiket": [
+        "Soft",
+        "Soft-Medium",
+        "Medium",
+        "Medium-Firm",
+        "Firm"
+      ],
       "fiyat_baslik": "Price List",
       "galeri_etiket": "Products in this price list",
       "fiyat_devam": "continued",
@@ -75,77 +150,1340 @@
       ],
       "iletisim_baslik": "Orders & enquiries",
       "iletisim_alt": "Contact us quoting the product code.",
-      "ornek_not": "Sample catalogue · images and product details are illustrative"
+      "ornek_not": "Draft catalogue · product details not yet complete",
+      "agirlik": "Weight",
+      "kumas": "Fabric",
+      "paket": "Packaging",
+      "urun_sayisi": "{n} products"
     }
   },
-
   "kategoriler": [
     {
+      "id": "silikon",
+      "gorsel": "bolum-silikon.webp",
+      "ad": {
+        "tr": "Silikon Yastıklar",
+        "en": "Silicone Pillows"
+      }
+    },
+    {
+      "id": "visco",
+      "gorsel": "bolum-visco.webp",
+      "ad": {
+        "tr": "Visco Yastıklar",
+        "en": "Visco Pillows"
+      },
+      "galeri_sira": [
+        "EveGold01",
+        "jellivisco01",
+        "Frozone01",
+        "PLÜTON001",
+        "JÜPİTER001",
+        "MARS001",
+        "HYPNOZZ001",
+        "EveViscoYeniSeri01",
+        "Eveviskoo1113"
+      ]
+    },
+    {
       "id": "cocuk",
-      "kod_araligi": "EVE-500",
-      "gorsel": "bolum-cocuk.jpg",
-      "ad": { "tr": "Çocuk Yastıkları", "en": "Kids' Pillows" },
-      "aciklama": {
-        "tr": "Sevimli karakterler, visco konforu. Çıkarılabilir, yıkanabilir kılıflarıyla küçükler için tasarlandı.",
-        "en": "Playful characters with visco comfort. Designed for little ones, with removable, washable covers."
+      "gorsel": "bolum-cocuk.webp",
+      "ad": {
+        "tr": "Figürlü Visco Çocuk Yastıkları",
+        "en": "Character Visco Kids' Pillows"
+      }
+    },
+    {
+      "id": "yorgan",
+      "gorsel": "bolum-yorgan.webp",
+      "ad": {
+        "tr": "Yorgan",
+        "en": "Duvets"
+      },
+      "galeri": false
+    },
+    {
+      "id": "hamilelik",
+      "gorsel": "bolum-hamilelik.webp",
+      "ad": {
+        "tr": "Hamilelik ve Sarılma Yastığı",
+        "en": "Pregnancy & Body Pillows"
+      }
+    },
+    {
+      "id": "medikal",
+      "gorsel": "bolum-medikal.webp",
+      "ad": {
+        "tr": "Medikal Ürünler",
+        "en": "Medical Products"
+      }
+    },
+    {
+      "id": "alez",
+      "gorsel": "bolum-alez.webp",
+      "ad": {
+        "tr": "Alezler",
+        "en": "Mattress Protectors"
+      }
+    },
+    {
+      "id": "nevresim",
+      "gorsel": "bolum-nevresim.webp",
+      "ad": {
+        "tr": "Nevresim Takımları",
+        "en": "Duvet Cover Sets"
+      }
+    },
+    {
+      "id": "carsaf",
+      "gorsel": "bolum-carsaf.webp",
+      "ad": {
+        "tr": "Çarşaflar",
+        "en": "Sheets"
+      }
+    },
+    {
+      "id": "bahce",
+      "gorsel": "bolum-bahce.webp",
+      "ad": {
+        "tr": "Bahçe ve Balkon Minder Grubu",
+        "en": "Garden & Balcony Cushions"
+      }
+    },
+    {
+      "id": "elyaf",
+      "gorsel": "bolum-elyaf.webp",
+      "ad": {
+        "tr": "Silikon Elyaf",
+        "en": "Silicone Fibre"
       }
     }
   ],
-
   "urunler": [
     {
-      "kod": "EVE-501",
-      "kategori": "cocuk",
-      "ad": { "tr": "Unicorn Çocuk Visco Yastık", "en": "Unicorn Kids' Visco Pillow" },
+      "kod": "EVE-11",
+      "kategori": "silikon",
+      "excel_no": 1,
+      "kaynak_klasor": "Mikrofiber yastık",
+      "ad": {
+        "tr": "Microfiber Yastık",
+        "en": "Microfibre Pillow"
+      },
       "aciklama": {
-        "tr": "Pembe unicorn tasarımı ve boynuz detaylarıyla çocuk odasının en sevilen parçası. Visco yapısı baş ve boyun formuna uyum sağlar.",
-        "en": "A pink unicorn with soft horn details: the favourite piece in any kids' room. The visco core moulds to head and neck."
+        "tr": "",
+        "en": ""
       },
       "ozellik": {
-        "olcu": "50 × 30 × 10 cm",
-        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
-        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
-        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
-        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
-        "sertlik": 2
+        "olcu": "50 × 70 cm",
+        "agirlik": "900 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Microfiber",
+          "en": "Microfibre"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
       },
-      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+      "ikonlar": []
     },
     {
-      "kod": "EVE-502",
-      "kategori": "cocuk",
-      "ad": { "tr": "Balina Çocuk Visco Yastık", "en": "Whale Kids' Visco Pillow" },
+      "kod": "EVE-LUX-6",
+      "kategori": "silikon",
+      "excel_no": 2,
+      "kaynak_klasor": "Kapitone Yastık",
+      "ad": {
+        "tr": "Kapitone Yastık",
+        "en": "Quilted Pillow"
+      },
       "aciklama": {
-        "tr": "Puantiyeli mavi balina, kumaştan kuyruk detayıyla. Ergonomik formu gelişim çağındaki çocuklara doğru destek sunar.",
-        "en": "A polka-dot blue whale with a fabric tail. Its ergonomic shape gives growing children the right support."
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "800 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Kapitoneli microfiber",
+          "en": "Quilted microfibre"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "YellowDream02",
+      "kategori": "silikon",
+      "excel_no": 3,
+      "kaynak_klasor": "Yellow Dream",
+      "ad": {
+        "tr": "Yellow Dream",
+        "en": "Yellow Dream"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "1200 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Pamuk dış kumaş",
+          "en": "Cotton outer fabric"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "Klimax02",
+      "kategori": "silikon",
+      "excel_no": 4,
+      "kaynak_klasor": "Klimax",
+      "ad": {
+        "tr": "Klimax",
+        "en": "Klimax"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "900 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Pamuk dış kumaş",
+          "en": "Cotton outer fabric"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "evecizgilisaten4adet",
+      "kategori": "silikon",
+      "excel_no": 5,
+      "kaynak_klasor": "Çizgili Saten",
+      "ad": {
+        "tr": "Çizgili Saten",
+        "en": "Striped Satin"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "900 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Çizgili saten",
+          "en": "Striped satin"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "BMB-101",
+      "kategori": "silikon",
+      "excel_no": 6,
+      "kaynak_klasor": "Bambu Yastık",
+      "ad": {
+        "tr": "Bambu Yastık",
+        "en": "Bamboo Pillow"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "800 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Dış kumaş %60 pamuk, %40 polyester",
+          "en": "Outer fabric 60% cotton, 40% polyester"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "BMBGRİ-101",
+      "kategori": "silikon",
+      "excel_no": 7,
+      "kaynak_klasor": "Bambu Gri",
+      "ad": {
+        "tr": "Bambu Gri",
+        "en": "Bamboo Grey"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf.",
+        "en": "Zippered cover."
+      },
+      "ozellik": {
+        "olcu": "50 × 70 cm",
+        "agirlik": "800 g",
+        "dolgu": {
+          "tr": "Silikon",
+          "en": "Silicone"
+        },
+        "kumas": {
+          "tr": "Dış kumaş %60 pamuk, %40 polyester",
+          "en": "Outer fabric 60% cotton, 40% polyester"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Rulo",
+          "en": "Rolled"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EveGold01",
+      "kategori": "visco",
+      "excel_no": 8,
+      "kaynak_klasor": "Gelato Yastık",
+      "ad": {
+        "tr": "Gelato Yastık",
+        "en": "Gelato Pillow"
+      },
+      "aciklama": {
+        "tr": "Akıllı visco elastik sünger yapısı baş ve boyun şeklini alarak kişiye özel destek sağlar.",
+        "en": "Smart visco-elastic foam takes the shape of the head and neck for personalised support."
+      },
+      "ozellik": {
+        "olcu": "40 × 70 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Gold desenli soğuk kumaş, fermuarlı kılıf",
+          "en": "Gold-patterned cool-touch fabric, zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ]
+    },
+    {
+      "kod": "jellivisco01",
+      "kategori": "visco",
+      "excel_no": 9,
+      "kaynak_klasor": "Jel Yastık",
+      "ad": {
+        "tr": "Jel Yastık",
+        "en": "Gel Pillow"
+      },
+      "aciklama": {
+        "tr": "Özel jel katmanı sayesinde sıcak yaz gecelerinde serinlik hissi sağlayarak daha konforlu bir uyku deneyimi sunar.",
+        "en": "A special gel layer gives a cooling feel on warm summer nights for more comfortable sleep."
+      },
+      "ozellik": {
+        "olcu": "60 × 40 × 11 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Fermuarlı kılıf",
+          "en": "Zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ]
+    },
+    {
+      "kod": "PLÜTON001",
+      "kategori": "visco",
+      "excel_no": 10,
+      "kaynak_klasor": "01",
+      "ad": {
+        "tr": "01",
+        "en": "01"
+      },
+      "aciklama": {
+        "tr": "Vücut ısısına duyarlı yapısı sayesinde baş ve boyun şeklinizi alır, basıncı azaltır ve ergonomik destek sağlar.",
+        "en": "Its body-heat-sensitive structure takes the shape of your head and neck, relieves pressure and gives ergonomic support."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Özel file kumaş, fermuarlı kılıf",
+          "en": "Special mesh fabric, zippered cover"
+        },
+        "sertlik": 1,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ],
+      "grup": "visco-01-03",
+      "varyant": {
+        "tr": "01",
+        "en": "01"
+      }
+    },
+    {
+      "kod": "JÜPİTER001",
+      "kategori": "visco",
+      "excel_no": 11,
+      "kaynak_klasor": "02",
+      "ad": {
+        "tr": "02",
+        "en": "02"
+      },
+      "aciklama": {
+        "tr": "Vücut ısısına duyarlı yapısı sayesinde baş ve boyun şeklinizi alır, basıncı azaltır ve ergonomik destek sağlar.",
+        "en": "Its body-heat-sensitive structure takes the shape of your head and neck, relieves pressure and gives ergonomic support."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Özel file kumaş, fermuarlı kılıf",
+          "en": "Special mesh fabric, zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ],
+      "grup": "visco-01-03",
+      "varyant": {
+        "tr": "02",
+        "en": "02"
+      }
+    },
+    {
+      "kod": "MARS001",
+      "kategori": "visco",
+      "excel_no": 12,
+      "kaynak_klasor": "03",
+      "ad": {
+        "tr": "03",
+        "en": "03"
+      },
+      "aciklama": {
+        "tr": "Vücut ısısına duyarlı yapısı sayesinde baş ve boyun şeklinizi alır, basıncı azaltır ve ergonomik destek sağlar.",
+        "en": "Its body-heat-sensitive structure takes the shape of your head and neck, relieves pressure and gives ergonomic support."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Özel file kumaş, fermuarlı kılıf",
+          "en": "Special mesh fabric, zippered cover"
+        },
+        "sertlik": 3,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ],
+      "grup": "visco-01-03",
+      "varyant": {
+        "tr": "03",
+        "en": "03"
+      }
+    },
+    {
+      "kod": "Frozone01",
+      "kategori": "visco",
+      "excel_no": 13,
+      "kaynak_klasor": "Yüz Üstü Yastığı",
+      "ad": {
+        "tr": "Yüz Üstü Yastığı",
+        "en": "Stomach Sleeper Pillow"
+      },
+      "aciklama": {
+        "tr": "Frozone soğuk kumaş teknolojisi.",
+        "en": "Frozone cool-fabric technology."
+      },
+      "ozellik": {
+        "olcu": "30 × 60 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Özel klimalı kumaş, fermuarlı kılıf",
+          "en": "Special climate-control fabric, zippered cover"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ]
+    },
+    {
+      "kod": "HYPNOZZ001",
+      "kategori": "visco",
+      "excel_no": 14,
+      "kaynak_klasor": "Hipnoz Yastığı",
+      "ad": {
+        "tr": "Hipnoz Yastığı",
+        "en": "Hipnoz Pillow"
+      },
+      "aciklama": {
+        "tr": "Ortopedik, boyun destekli.",
+        "en": "Orthopaedic, with neck support."
+      },
+      "ozellik": {
+        "olcu": "40 × 60 × 12 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Karbon iplik dokumalı anti statik kumaş",
+          "en": "Carbon-thread woven anti-static fabric"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Fermuarlı PVC çanta",
+          "en": "Zippered PVC bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ]
+    },
+    {
+      "kod": "EveViscoYeniSeri01",
+      "kategori": "visco",
+      "excel_no": 15,
+      "kaynak_klasor": "Kolajen Yastık",
+      "ad": {
+        "tr": "Kolajen Yastık",
+        "en": "Collagen Pillow"
+      },
+      "aciklama": {
+        "tr": "Omurga ve boyun sağlığı için ortopedik tasarım.",
+        "en": "Orthopaedic design for spine and neck health."
+      },
+      "ozellik": {
+        "olcu": "40 × 65 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco parçacıklı",
+          "en": "Shredded visco"
+        },
+        "kumas": {
+          "tr": "Pamuklu örme kumaş",
+          "en": "Cotton knit fabric"
+        },
+        "sertlik": 3,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco"
+      ]
+    },
+    {
+      "kod": "Eveviskoo1113",
+      "kategori": "visco",
+      "excel_no": 16,
+      "kaynak_klasor": "Boyun Yastığı",
+      "ad": {
+        "tr": "Boyun Yastığı",
+        "en": "Neck Pillow"
+      },
+      "aciklama": {
+        "tr": "Boyun destekli ergonomik yapı. Hipoalerjik materyal kullanımı.",
+        "en": "Ergonomic shape with neck support. Made with hypoallergenic materials."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "VİSCOBALİNA",
+      "kategori": "cocuk",
+      "excel_no": 17,
+      "kaynak_klasor": "Visco Balina",
+      "ad": {
+        "tr": "Balina",
+        "en": "Whale"
+      },
+      "aciklama": {
+        "tr": "Boyun ve başı ideal şekilde destekler.",
+        "en": "Ideal support for the head and neck."
       },
       "ozellik": {
         "olcu": "50 × 30 × 10 cm",
-        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
-        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
-        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
-        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
-        "sertlik": 2
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
       },
-      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "EVE-302",
+      "kategori": "cocuk",
+      "excel_no": 18,
+      "kaynak_klasor": "Visco Tilki",
+      "ad": {
+        "tr": "Tilki",
+        "en": "Fox"
+      },
+      "aciklama": {
+        "tr": "Boyun ve başı ideal şekilde destekler.",
+        "en": "Ideal support for the head and neck."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "EVE-303",
+      "kategori": "cocuk",
+      "excel_no": 19,
+      "kaynak_klasor": "Visco Aslan",
+      "ad": {
+        "tr": "Aslan",
+        "en": "Lion"
+      },
+      "aciklama": {
+        "tr": "Boyun ve başı ideal şekilde destekler.",
+        "en": "Ideal support for the head and neck."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "EVE-304",
+      "kategori": "cocuk",
+      "excel_no": 20,
+      "kaynak_klasor": "Visco Köpek",
+      "ad": {
+        "tr": "Köpek",
+        "en": "Puppy"
+      },
+      "aciklama": {
+        "tr": "Boyun ve başı ideal şekilde destekler.",
+        "en": "Ideal support for the head and neck."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "EVE-305",
+      "kategori": "cocuk",
+      "excel_no": 21,
+      "kaynak_klasor": "Visco Unicorn",
+      "ad": {
+        "tr": "Unicorn",
+        "en": "Unicorn"
+      },
+      "aciklama": {
+        "tr": "Boyun ve başı ideal şekilde destekler.",
+        "en": "Ideal support for the head and neck."
+      },
+      "ozellik": {
+        "olcu": "50 × 30 × 10 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Çıkarılabilir kılıf, kir tutmaz, ergonomik, yıkanabilir, fermuarlı",
+          "en": "Removable, stain-resistant, ergonomic, washable zippered cover"
+        },
+        "sertlik": 2,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "yikanabilir"
+      ]
+    },
+    {
+      "kod": "Evetekstilyorgan1",
+      "kategori": "yorgan",
+      "excel_no": 22,
+      "kaynak_klasor": "Kapitone Yorgan (Tek : Çift Kişilik)",
+      "ad": {
+        "tr": "Kapitone Yorgan (Tek Kişilik)",
+        "en": "Quilted Duvet (Single)"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "155 × 215 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Elyaf silikon",
+          "en": "Silicone fibre"
+        },
+        "kumas": {
+          "tr": "Kapitoneli kumaş",
+          "en": "Quilted fabric"
+        },
+        "paket": {
+          "tr": "Vakumlu",
+          "en": "Vacuum-packed"
+        }
+      },
+      "ikonlar": [],
+      "grup": "kapitone-yorgan",
+      "varyant": {
+        "tr": "Tek Kişilik",
+        "en": "Single"
+      }
+    },
+    {
+      "kod": "EVE-402",
+      "kategori": "yorgan",
+      "excel_no": 23,
+      "kaynak_klasor": "Kapitone Yorgan (Tek : Çift Kişilik)",
+      "ad": {
+        "tr": "Kapitone Yorgan (Çift Kişilik)",
+        "en": "Quilted Duvet (Double)"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "195 × 215 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Elyaf silikon",
+          "en": "Silicone fibre"
+        },
+        "kumas": {
+          "tr": "Kapitoneli kumaş",
+          "en": "Quilted fabric"
+        },
+        "paket": {
+          "tr": "Vakumlu",
+          "en": "Vacuum-packed"
+        }
+      },
+      "ikonlar": [],
+      "grup": "kapitone-yorgan",
+      "varyant": {
+        "tr": "Çift Kişilik",
+        "en": "Double"
+      }
+    },
+    {
+      "kod": "AYHAMİLEVEMZİRMEYASTIĞI",
+      "kategori": "hamilelik",
+      "excel_no": 25,
+      "kaynak_klasor": "Ay yastık",
+      "ad": {
+        "tr": "Ay Yastık",
+        "en": "Moon Pillow"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı welsoft kumaş.",
+        "en": "Zippered welsoft fabric."
+      },
+      "ozellik": {
+        "olcu": "40 × 135 cm",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Elyaf silikon",
+          "en": "Silicone fibre"
+        },
+        "kumas": {
+          "tr": "Welsoft kumaş",
+          "en": "Welsoft fabric"
+        },
+        "sertlik": 1,
+        "paket": {
+          "tr": "Vakumlu",
+          "en": "Vacuum-packed"
+        }
+      },
+      "ikonlar": []
     },
     {
       "kod": "EVE-503",
-      "kategori": "cocuk",
-      "ad": { "tr": "Köpek Çocuk Visco Yastık", "en": "Puppy Kids' Visco Pillow" },
+      "kategori": "hamilelik",
+      "excel_no": 26,
+      "kaynak_klasor": "S Yastık",
+      "ad": {
+        "tr": "S Yastık",
+        "en": "S Pillow"
+      },
       "aciklama": {
-        "tr": "Kulaklı, gülümseyen köpek karakteri. Nefes alabilen kumaşı terlemeyi azaltır, ferah bir uyku sağlar.",
-        "en": "A smiling puppy with soft ears. Breathable fabric reduces sweating for a fresher night's sleep."
+        "tr": "",
+        "en": ""
       },
       "ozellik": {
-        "olcu": "50 × 30 × 10 cm",
-        "dolgu": { "tr": "Visco hafızalı sünger", "en": "Visco memory foam" },
-        "kilif": { "tr": "Pamuklu, fermuarlı, çıkarılabilir", "en": "Cotton, zipped, removable" },
-        "yikama": { "tr": "Kılıf 30 °C'de yıkanabilir", "en": "Cover machine washable at 30 °C" },
-        "yas": { "tr": "3 yaş ve üzeri", "en": "Ages 3+" },
-        "sertlik": 2
+        "olcu": "",
+        "agirlik": ""
       },
-      "ikonlar": ["visco", "yikanabilir", "nefes", "oeko"]
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-504",
+      "kategori": "hamilelik",
+      "excel_no": 27,
+      "kaynak_klasor": "Emzirme yastığı",
+      "ad": {
+        "tr": "Emzirme Yastığı",
+        "en": "Nursing Pillow"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-505",
+      "kategori": "hamilelik",
+      "kaynak_klasor": "Kılıf edited/edited",
+      "ad": {
+        "tr": "Ay Yastık Kılıfı",
+        "en": "Moon Pillow Cover"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf. Sadece kılıftır, iç yastık dahil değildir.",
+        "en": "Zippered cover. Cover only, inner pillow not included."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-506",
+      "kategori": "hamilelik",
+      "kaynak_klasor": "Kılıf edited/edited",
+      "ad": {
+        "tr": "S Yastık Kılıfı",
+        "en": "S Pillow Cover"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf. Sadece kılıftır, iç yastık dahil değildir.",
+        "en": "Zippered cover. Cover only, inner pillow not included."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-507",
+      "kategori": "hamilelik",
+      "kaynak_klasor": "Kılıf edited/edited",
+      "ad": {
+        "tr": "Emzirme Yastığı Kılıfı",
+        "en": "Nursing Pillow Cover"
+      },
+      "aciklama": {
+        "tr": "Fermuarlı kılıf. Sadece kılıftır, iç yastık dahil değildir.",
+        "en": "Zippered cover. Cover only, inner pillow not included."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "CoxyOrtopedik01",
+      "kategori": "medikal",
+      "excel_no": 28,
+      "kaynak_klasor": "Coxy Ortopedik Oturma Minderi",
+      "ad": {
+        "tr": "Coxy Ortopedik Oturma Minderi",
+        "en": "Coxy Orthopaedic Seat Cushion"
+      },
+      "aciklama": {
+        "tr": "Kuyruk sokumu (koksiks) bölgesine baskıyı azaltan U kesim yapısı sayesinde ağrıların hafifletilmesine yardımcı olur.",
+        "en": "Its U-cut shape reduces pressure on the tailbone (coccyx), helping to relieve pain."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Visco",
+          "en": "Visco"
+        },
+        "kumas": {
+          "tr": "Nefes alabilen kumaş",
+          "en": "Breathable fabric"
+        },
+        "sertlik": 5,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "visco",
+        "nefes"
+      ]
+    },
+    {
+      "kod": "EVE-602",
+      "kategori": "medikal",
+      "excel_no": 29,
+      "kaynak_klasor": "Sırt Minderi",
+      "ad": {
+        "tr": "Ortopedik Sırt Minderi",
+        "en": "Orthopaedic Back Cushion"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "kumas": {
+          "tr": "Nefes alabilen kumaş",
+          "en": "Breathable fabric"
+        },
+        "sertlik": 4,
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": [
+        "nefes"
+      ]
+    },
+    {
+      "kod": "EVE-604",
+      "kategori": "medikal",
+      "excel_no": 31,
+      "kaynak_klasor": "Pozisyon yoga yastığı",
+      "ad": {
+        "tr": "Pozisyon Yoga Yastığı",
+        "en": "Positioning Yoga Pillow"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-701",
+      "kategori": "alez",
+      "excel_no": 33,
+      "kaynak_klasor": "Sıvı Geçirmez Alez",
+      "ad": {
+        "tr": "Sıvı Geçirmez Alez",
+        "en": "Waterproof Mattress Protector"
+      },
+      "aciklama": {
+        "tr": "Kapitoneli, sıvı geçirmez.",
+        "en": "Quilted and liquid-proof."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Metrelik elyaf",
+          "en": "Wadding"
+        },
+        "kumas": {
+          "tr": "Pamuklu 57 tel ranforce kumaş",
+          "en": "Cotton 57-thread ranforce fabric"
+        },
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-702",
+      "kategori": "alez",
+      "excel_no": 34,
+      "kaynak_klasor": "Kapitone Alez",
+      "ad": {
+        "tr": "Kapitone Alez",
+        "en": "Quilted Mattress Protector"
+      },
+      "aciklama": {
+        "tr": "Kapitoneli.",
+        "en": "Quilted."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Metrelik elyaf",
+          "en": "Wadding"
+        },
+        "kumas": {
+          "tr": "Pamuklu 57 tel ranforce kumaş",
+          "en": "Cotton 57-thread ranforce fabric"
+        },
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-703",
+      "kategori": "alez",
+      "excel_no": 35,
+      "kaynak_klasor": "Bebek Alezi",
+      "ad": {
+        "tr": "Bebek Alezi",
+        "en": "Baby Mattress Protector"
+      },
+      "aciklama": {
+        "tr": "Kapitoneli, sıvı geçirmez.",
+        "en": "Quilted and liquid-proof."
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": "",
+        "dolgu": {
+          "tr": "Metrelik elyaf",
+          "en": "Wadding"
+        },
+        "kumas": {
+          "tr": "Pamuklu 57 tel ranforce kumaş",
+          "en": "Cotton 57-thread ranforce fabric"
+        },
+        "paket": {
+          "tr": "Poşet",
+          "en": "Poly bag"
+        }
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-704",
+      "kategori": "alez",
+      "excel_no": 36,
+      "kaynak_klasor": "Ateş Düşürücü Alez",
+      "ad": {
+        "tr": "Ateş Düşürücü Alez",
+        "en": "Fever-Reducing Mattress Protector"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-802",
+      "kategori": "nevresim",
+      "excel_no": 38,
+      "kaynak_klasor": "Nevresim Takımı (Çift Kişilik)",
+      "ad": {
+        "tr": "Nevresim Takımı (Çift Kişilik)",
+        "en": "Duvet Cover Set (Double)"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-901",
+      "kategori": "carsaf",
+      "excel_no": 39,
+      "kaynak_klasor": "Çarşaf",
+      "ad": {
+        "tr": "Çarşaf",
+        "en": "Sheet"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-1001",
+      "kategori": "bahce",
+      "excel_no": 40,
+      "kaynak_klasor": "Sandalye Minderi",
+      "ad": {
+        "tr": "Sandalye Minderi",
+        "en": "Chair Cushion"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-1101",
+      "kategori": "elyaf",
+      "excel_no": 42,
+      "kaynak_klasor": "Düz Silikon Elyaf",
+      "ad": {
+        "tr": "Düz Silikon Elyaf",
+        "en": "Plain Silicone Fibre"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    },
+    {
+      "kod": "EVE-1103",
+      "kategori": "elyaf",
+      "excel_no": 44,
+      "kaynak_klasor": "Metrelik Elyaf Görseli",
+      "ad": {
+        "tr": "Metrelik Vatka Elyaf",
+        "en": "Wadding by the Metre"
+      },
+      "aciklama": {
+        "tr": "",
+        "en": ""
+      },
+      "ozellik": {
+        "olcu": "",
+        "agirlik": ""
+      },
+      "ikonlar": []
+    }
+  ],
+  "kapak": "kapak.webp",
+  "gruplar": [
+    {
+      "id": "visco-01-03",
+      "ad": {
+        "tr": "01 · 02 · 03",
+        "en": "01 · 02 · 03"
+      }
+    },
+    {
+      "id": "kapitone-yorgan",
+      "ad": {
+        "tr": "Kapitone Yorgan",
+        "en": "Quilted Duvet"
+      },
+      "ortak_gorsel": true
     }
   ]
 }
