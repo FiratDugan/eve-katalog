@@ -168,9 +168,10 @@ function tabloyuHazirla() {
   const satirlar = fiyatlar.satirlar.map((s) => [s.kod, adlar[s.kod] || '', s.adet, s.tl, s.usd ?? '', s.eur ?? '']);
   fiyat.getRange(1, 1, 1, BASLIKLAR.length).setValues([BASLIKLAR])
     .setFontWeight('bold').setBackground('#B0141C').setFontColor('#FFFFFF');
+  // Kod, ad ve adet metin olarak kalsın: "01" gibi ürün adları sayıya dönüşmesin
+  fiyat.getRange('A2:C').setNumberFormat('@');
   fiyat.getRange(2, 1, satirlar.length, BASLIKLAR.length).setValues(satirlar);
   fiyat.getRange('B2:B').setFontColor('#888888');
-  fiyat.getRange('C2:C').setNumberFormat('@');
   fiyat.getRange('D2:F').setNumberFormat('#,##0.00');
   fiyat.getRange('D2:F').setDataValidation(SpreadsheetApp.newDataValidation()
     .requireNumberGreaterThan(0).setAllowInvalid(false)
