@@ -25,7 +25,6 @@
     "tr": {
       "katalog": "Ürün Kataloğu",
       "hakkimizda_etiket": "Hakkımızda",
-      "notlar": "Notlar",
       "ikon": {
         "visco": "Visco hafızalı sünger",
         "yikanabilir": "Yıkanabilir kılıf",
@@ -53,7 +52,7 @@
         ]
       ],
       "sertifika_baslik": "Sertifikalar",
-      "dizin_baslik": "Ürün Kodu Dizini",
+      "dizin_baslik": "Ürünler",
       "dizin_aciklama": "Sipariş ve bilgi talepleriniz için ürün kodunu belirtmeniz yeterlidir.",
       "kod": "Kod",
       "urun": "Ürün",
@@ -92,7 +91,6 @@
     "en": {
       "katalog": "Product Catalogue",
       "hakkimizda_etiket": "About us",
-      "notlar": "Notes",
       "ikon": {
         "visco": "Visco memory foam",
         "yikanabilir": "Washable cover",
@@ -120,7 +118,7 @@
         ]
       ],
       "sertifika_baslik": "Certificates",
-      "dizin_baslik": "Product Code Index",
+      "dizin_baslik": "Products",
       "dizin_aciklama": "Simply quote the product code for orders and enquiries.",
       "kod": "Code",
       "urun": "Product",

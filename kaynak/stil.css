@@ -250,9 +250,6 @@ body.tek .sayfa.goster { display: block; }
 
 /* ---------- Not sayfası (çift sayfa tamamlamak için) ---------- */
 
-.notlar .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
-.notlar .satirlar { margin-top: 40px; }
-.notlar .satirlar i { display: block; height: 44px; border-bottom: 1px solid var(--cizgi); }
 
 /* ---------- Arka kapak ---------- */
 

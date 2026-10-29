@@ -169,9 +169,6 @@ def sayfa_plani(veri):
                 plan.append(("galeri", (kat, parca)))
     dizin = [("dizin", parca) for parca in dizin_parcalari(plan)]
     plan = [("kapak", None), ("hakkimizda", None)] + dizin + plan
-    # Sayfa çevirmeli görünümde arka kapak tek başına kalsın diye toplam sayfa çift olmalı
-    if (len(plan) + 1) % 2:
-        plan.append(("notlar", None))
     plan.append(("arka", None))
     return plan
 
@@ -522,14 +519,6 @@ def s_galeri(dil, m, no, kat, urunler, plan):
 </section>'''
 
 
-def s_notlar(dil, m, no):
-    return f'''
-<section class="sayfa notlar" id="p{no}">
-  <div class="icerik"><div class="etiket">{e(m["notlar"])}</div><div class="satirlar">{"<i></i>" * 16}</div></div>
-  {alt(m, no)}
-</section>'''
-
-
 def s_arka(dil, m, no):
     f = VERI["firma"]
     bilgiler = [
@@ -575,8 +564,6 @@ def katalog_html(dil, plan):
         elif tur == "galeri":
             kat, urunler = nesne
             parcalar.append(s_galeri(dil, m, no, kat, urunler, plan))
-        elif tur == "notlar":
-            parcalar.append(s_notlar(dil, m, no))
         elif tur == "arka":
             parcalar.append(s_arka(dil, m, no))
     # ?sayfa=N ile tek sayfa gösterilir (web sürümü için sayfa görüntüsü alırken)
