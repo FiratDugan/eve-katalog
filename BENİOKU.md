@@ -1,12 +1,12 @@
 # EVE Tekstil Katalog
 
 ## Klasörler
-- `kaynak/katalog.json`: tüm metinler, ürünler, kodlar (TR + EN)
+- `kaynak/katalog.json`: tüm metinler, ürünler, kodlar (TR + EN + DE)
 - `gorseller/`: ürün görselleri, ürün koduyla adlandırılır
   - `EVE-501_1.jpg` ana görsel, `EVE-501_2.jpg` ve `EVE-501_3.jpg` yan görseller
   - `kapak.jpg` kapak görseli, `bolum-cocuk.jpg` bölüm açılış görseli
 - `cikti/`: üretilen dosyalar (her derlemede silinip yeniden oluşturulur)
-  - `Eve-Tekstil-Katalog-TR.pdf` / `-EN.pdf`: e-posta ve WhatsApp için
+  - `Eve-Tekstil-Katalog-TR.pdf` / `-EN.pdf` / `-DE.pdf`: e-posta ve WhatsApp için
   - `web/`: siteye yüklenecek klasörün tamamı
 
 ## Kataloğu yeniden üretmek
@@ -37,5 +37,5 @@ Her kategorinin son ürününden sonra o kategorinin fiyat listesi sayfası otom
 ## Siteye yüklemek
 `cikti/web/` klasörünü olduğu gibi sitede örneğin `/katalog/` adresine yükle.
 - `siteadi.com/katalog/`: dil, tarayıcı diline göre seçilir
-- `siteadi.com/katalog/?dil=en`: İngilizce açılır
+- `siteadi.com/katalog/?dil=en`: İngilizce, `?dil=de`: Almanca açılır
 - `siteadi.com/katalog/#EVE-502`: doğrudan o ürünün sayfası açılır

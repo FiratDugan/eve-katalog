@@ -3,7 +3,7 @@
 
   python3 kaynak/build.py
 
-katalog.json + fiyatlar.json + gorseller/  ->  cikti/Eve-Tekstil-Katalog-TR.pdf, -EN.pdf
+katalog.json + fiyatlar.json + gorseller/  ->  cikti/Eve-Tekstil-Katalog-TR.pdf, -EN.pdf, -DE.pdf
                                cikti/web/  (siteye yüklenecek klasör)
 
 Ürün görselleri ürün koduyla adlandırılır: gorseller/EVE-501_1.jpg (ana görsel),
@@ -33,7 +33,7 @@ GORSELLER = KOK / "gorseller"
 ONBELLEK = KAYNAK / "_onbellek"
 CIKTI = KOK / "cikti"
 WEB = CIKTI / "web"
-DILLER = ["tr", "en"]
+DILLER = ["tr", "en", "de"]
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 SAYFA_GENISLIK = 1240  # web sürümündeki sayfa görsellerinin genişliği (px)
 SAYFA_UZANTI = "webp" if Image else "jpg"
@@ -142,7 +142,7 @@ def para(x, dil):
     if x is None:
         return "—"
     s = f"{x:,.2f}"
-    return s.replace(",", "_").replace(".", ",").replace("_", ".") if dil == "tr" else s
+    return s.replace(",", "_").replace(".", ",").replace("_", ".") if dil in ("tr", "de") else s
 
 
 def sayfa_plani(veri):
@@ -524,9 +524,9 @@ def s_arka(dil, m, no):
     bilgiler = [
         ("Tel", f'<a href="tel:{f["telefon"].replace(" ", "")}">{e(f["telefon"])}</a><br><a href="tel:{f["telefon2"].replace(" ", "")}">{e(f["telefon2"])}</a>'),
         ("WhatsApp", f'<a href="https://wa.me/{f["whatsapp"]}">{e(f["telefon"])}</a>'),
-        ("E-mail" if dil == "en" else "E-posta", f'<a href="mailto:{f["eposta"]}">{e(f["eposta"])}</a>'),
+        (m["eposta"], f'<a href="mailto:{f["eposta"]}">{e(f["eposta"])}</a>'),
         ("Web", f'<a href="https://{f["web"]}">{e(f["web"])}</a>'),
-        ("Address" if dil == "en" else "Adres", e(f["adres"][dil])),
+        (m["adres"], e(f["adres"][dil])),
     ]
     dl = "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in bilgiler)
     rozetler = "".join(f"<span>{e(s)}</span>" for s in f["sertifikalar"])

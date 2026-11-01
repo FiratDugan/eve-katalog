@@ -18,9 +18,17 @@
       pdf: 'Download PDF',
       bulunamadi: 'No product found with this code',
       onceki: 'Previous page', sonraki: 'Next page', sayfa: 'Page'
+    },
+    de: {
+      baslik: 'Produktkatalog',
+      ara: 'Produktcode suchen (z. B. EVE-302)',
+      pdf: 'PDF herunterladen',
+      bulunamadi: 'Kein Produkt mit diesem Code gefunden',
+      onceki: 'Vorherige Seite', sonraki: 'Nächste Seite', sayfa: 'Seite'
     }
   };
 
+  const DILLER = Object.keys(METIN);
   const $ = (s) => document.querySelector(s);
   const alan = $('.kitap-alani');
   const girdi = $('.ara input');
@@ -36,12 +44,13 @@
 
   function ilkDil() {
     const p = new URLSearchParams(location.search).get('dil');
-    if (p === 'tr' || p === 'en') return p;
+    if (DILLER.includes(p)) return p;
     try {
       const s = localStorage.getItem('eve-katalog-dil');
-      if (s === 'tr' || s === 'en') return s;
+      if (DILLER.includes(s)) return s;
     } catch (e) { /* depolama kapalı olabilir */ }
-    return (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+    const t = (navigator.language || '').toLowerCase().slice(0, 2);
+    return DILLER.includes(t) ? t : 'en';
   }
 
   const iki = (n) => String(n).padStart(2, '0');
