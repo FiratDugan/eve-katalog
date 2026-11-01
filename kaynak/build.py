@@ -38,7 +38,6 @@ CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacO
 SAYFA_GENISLIK = 1240  # web sürümündeki sayfa görsellerinin genişliği (px)
 SAYFA_UZANTI = "webp" if Image else "jpg"
 FIYAT_SATIR_SAYFA = 16  # bir fiyat listesi sayfasına sığan fiyat satırı; fazlası devam sayfasına geçer
-DIZIN_YUKSEKLIK = 700  # bir dizin sayfasındaki tabloya ayrılan yükseklik (px); fazlası sonraki dizin sayfasına geçer
 
 IKONLAR = {
     "visco": '<path d="M3 8c3-2 6 2 9 0s6-2 9 0M3 13c3-2 6 2 9 0s6-2 9 0M3 18c3-2 6 2 9 0s6-2 9 0"/>',
@@ -167,8 +166,7 @@ def sayfa_plani(veri):
             plan.append(("fiyat", (kat, parca, j > 0)))
             if kat.get("galeri", True):
                 plan.append(("galeri", (kat, parca)))
-    dizin = [("dizin", parca) for parca in dizin_parcalari(plan)]
-    plan = [("kapak", None), ("hakkimizda", None)] + dizin + plan
+    plan = [("kapak", None)] + plan
     plan.append(("arka", None))
     return plan
 
@@ -176,26 +174,6 @@ def sayfa_plani(veri):
 def urun_sayfalari(plan):
     """Ürün kodu -> ürünün sayfa numarası."""
     return {u["kod"]: i for i, (tur, us) in enumerate(plan, 1) if tur == "urun" for u in us}
-
-
-def dizin_parcalari(plan):
-    """Dizin satırlarını (plan içindeki sıra numaralarıyla) sayfalara böler.
-    Kategori başlığı sayfanın son satırı olarak kalmaz."""
-    yukseklik = {"bolum": 52, "urun": 35, "fiyat": 35}
-    satirlar = [i for i, (tur, n) in enumerate(plan) if tur in ("bolum", "urun") or (tur == "fiyat" and not n[2])]
-    parcalar, parca, dolu = [], [], 0
-    for i in satirlar:
-        tur, n = plan[i]
-        satir = yukseklik[tur] * (len(n) if tur == "urun" else 1)
-        h = satir + (yukseklik["urun"] if tur == "bolum" else 0)
-        if parca and dolu + h > DIZIN_YUKSEKLIK:
-            parcalar.append(parca)
-            parca, dolu = [], 0
-        parca.append(i)
-        dolu += satir
-    if parca:
-        parcalar.append(parca)
-    return parcalar
 
 
 def alt(m, no):
@@ -214,57 +192,6 @@ def s_kapak(dil, m, no):
     <p class="slogan">{e(f["slogan"][dil])}</p>
     <div class="cizgi"><span>{e(f["web"])}</span><span class="ornek-not">{e(m["ornek_not"])}</span></div>
   </div>
-</section>'''
-
-
-def s_hakkimizda(dil, m, no):
-    f = VERI["firma"]
-    paragraflar = "".join(f"<p>{e(p)}</p>" for p in m["hakkimizda"])
-    rakamlar = "".join(f"<div><b>{e(a)}</b><span>{e(b)}</span></div>" for a, b in m["rakamlar"])
-    rozetler = "".join(f"<span>{e(s)}</span>" for s in f["sertifikalar"])
-    return f'''
-<section class="sayfa hakkimizda" id="p{no}">
-  <div class="icerik">
-    <div class="etiket">{e(m["hakkimizda_etiket"])}</div>
-    <h2>{e(m["hakkimizda_baslik"])}</h2>
-    <div class="metin">{paragraflar}</div>
-    <div class="rakamlar">{rakamlar}</div>
-    <div class="sertifikalar"><div class="etiket">{e(m["sertifika_baslik"])}</div><div class="rozetler">{rozetler}</div></div>
-  </div>
-  <div class="alt-blok"><blockquote>{e(f["slogan"][dil])}</blockquote>{alt(m, no)}</div>
-</section>'''
-
-
-def s_dizin(dil, m, no, plan, parca):
-    ilk_dizin = next(i for i, (tur, _) in enumerate(plan, 1) if tur == "dizin")
-    kaydirma = sum(1 for tur, _ in plan if tur == "dizin") + 2  # dizin satırları dizinsiz plana göre numaralı
-    satirlar = []
-    for j in parca:
-        i = j + kaydirma + 1
-        tur, nesne = plan[i - 1]
-        if tur == "bolum":
-            satirlar.append(f'<tr class="grup"><td colspan="3">{e(nesne["ad"][dil])}</td></tr>')
-        elif tur == "urun":
-            satirlar += [
-                f'<tr><td class="kod"><a href="#p{i}">{e(u["kod"])}</a></td>'
-                f'<td><a href="#p{i}">{e(u["ad"][dil])}</a></td><td>{i:02d}</td></tr>'
-                for u in nesne
-            ]
-        elif tur == "fiyat" and not nesne[2]:
-            satirlar.append(
-                f'<tr class="fiyat-satir"><td class="kod"><a href="#p{i}">₺ $ €</a></td>'
-                f'<td><a href="#p{i}">{e(m["fiyat_baslik"])}</a></td><td>{i:02d}</td></tr>'
-            )
-    return f'''
-<section class="sayfa dizin" id="p{no}">
-  <div class="icerik">
-    <div class="etiket">{e(m["kod"])} · {e(m["urun"])}</div>
-    <h2>{e(m["dizin_baslik"])}{f' <span>({e(m["fiyat_devam"])})</span>' if no != ilk_dizin else ""}</h2>
-    <p class="aciklama">{e(m["dizin_aciklama"])}</p>
-    <table><thead><tr><th>{e(m["kod"])}</th><th>{e(m["urun"])}</th><th>{e(m["sayfa"])}</th></tr></thead>
-    <tbody>{"".join(satirlar)}</tbody></table>
-  </div>
-  {alt(m, no)}
 </section>'''
 
 
@@ -361,6 +288,7 @@ def s_grup(dil, m, no, us):
 def s_urun(dil, m, no, us):
     """Görsel düzeni görsellerin sayısına ve yönüne göre seçilir:
     3+ görsel: büyük görsel + 2 yan görsel; 1 yatay + 1 dikey: üstte yatay, altta dikey + bilgiler;
+    2 yatay: üstte büyük yatay, altta küçük yatay + bilgiler;
     tek dikey: solda görsel, sağda bilgiler. Gruplu ürünler tek sayfada (s_grup)."""
     if len(us) > 1:
         return s_grup(dil, m, no, us)
@@ -398,6 +326,16 @@ def s_urun(dil, m, no, us):
   <div class="dikey-gorsel">{img(dikey[0], 900)}{rozet}</div>
   <div class="metin-kolon">{bilgi}</div>
   {dl}
+  {alt(m, no)}
+</section>'''
+
+    if len(g) == 2 and not dikey:
+        return f'''
+<section class="sayfa urun cift iki-yatay" id="p{no}" data-kod="{e(u["kod"])}">
+  {ust}
+  <div class="hero">{img(yatay[0], 1300)}{rozet}</div>
+  <div class="dikey-gorsel">{img(yatay[1], 700)}</div>
+  <div class="metin-kolon">{bilgi}{dl}</div>
   {alt(m, no)}
 </section>'''
 
@@ -549,10 +487,6 @@ def katalog_html(dil, plan):
     for no, (tur, nesne) in enumerate(plan, 1):
         if tur == "kapak":
             parcalar.append(s_kapak(dil, m, no))
-        elif tur == "hakkimizda":
-            parcalar.append(s_hakkimizda(dil, m, no))
-        elif tur == "dizin":
-            parcalar.append(s_dizin(dil, m, no, plan, nesne))
         elif tur == "bolum":
             bolum_sira += 1
             parcalar.append(s_bolum(dil, m, no, nesne, bolum_sira))

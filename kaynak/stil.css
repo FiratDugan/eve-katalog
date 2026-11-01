@@ -106,60 +106,6 @@ body.tek .sayfa.goster { display: block; }
 .kapak-alt .cizgi { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; padding-top: 16px; border-top: 1px solid var(--cizgi); font-size: 11px; color: var(--soluk); letter-spacing: .06em; }
 .ornek-not { color: var(--mercan); font-weight: 500; }
 
-/* ---------- Hakkımızda ---------- */
-
-.hakkimizda .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
-.hakkimizda h2 {
-  font-family: var(--serif); font-weight: 400;
-  font-size: 50px; line-height: 1.06; letter-spacing: -.015em;
-  margin: 18px 0 36px; max-width: 600px;
-}
-.hakkimizda .metin { columns: 2; column-gap: 36px; font-size: 13.5px; }
-.hakkimizda .metin p { margin-bottom: 12px; break-inside: avoid; }
-.rakamlar {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  margin-top: 54px; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi);
-}
-.rakamlar div { padding: 26px 0 24px; }
-.rakamlar div + div { padding-left: 28px; border-left: 1px solid var(--cizgi); }
-.rakamlar b { display: block; font-family: var(--serif); font-weight: 400; font-size: 46px; line-height: 1; color: var(--kirmizi); }
-.rakamlar span { display: block; margin-top: 10px; font-size: 12px; color: var(--soluk); }
-.sertifikalar { margin-top: 48px; }
-.sertifikalar .rozetler { display: flex; gap: 14px; margin-top: 16px; }
-.sertifikalar .rozetler span {
-  border: 1.5px solid var(--murekkep); border-radius: 4px;
-  padding: 12px 20px; font-weight: 700; font-size: 14px; letter-spacing: .06em;
-}
-.hakkimizda .alt-blok {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 250px;
-  background: var(--kagit-koyu);
-}
-.hakkimizda .alt-blok .sayfa-alt { border-top-color: #DCD1C6; }
-.hakkimizda .alt-blok blockquote {
-  position: absolute; left: 56px; right: 56px; top: 54px;
-  font-family: var(--serif); font-size: 30px; line-height: 1.2; font-weight: 400; color: var(--kirmizi-koyu);
-}
-
-/* ---------- Kod dizini ---------- */
-
-.dizin .icerik { position: absolute; top: 120px; left: 56px; right: 56px; }
-.dizin h2 { font-family: var(--serif); font-weight: 400; font-size: 50px; line-height: 1.05; margin: 18px 0 12px; }
-.dizin .aciklama { color: var(--soluk); font-size: 14px; margin-bottom: 40px; }
-.dizin table { width: 100%; border-collapse: collapse; }
-.dizin th {
-  text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--soluk); padding: 0 0 10px; border-bottom: 1.5px solid var(--murekkep);
-}
-.dizin th:last-child, .dizin td:last-child { text-align: right; }
-.dizin td { padding: 15px 0; border-bottom: 1px solid var(--cizgi); font-size: 14px; }
-.dizin td.kod { width: 130px; }
-.dizin td.kod a { font-weight: 700; color: var(--kirmizi); letter-spacing: .04em; text-decoration: none; }
-.dizin td a { color: inherit; text-decoration: none; }
-.dizin tr.grup td {
-  padding: 28px 0 10px; border-bottom: none; text-align: left;
-  font-family: var(--serif); font-size: 20px;
-}
-
 /* ---------- Bölüm açılışı ---------- */
 
 .bolum .bolum-gorsel { position: absolute; top: 0; left: 0; right: 0; height: 640px; }
@@ -215,9 +161,6 @@ body.tek .sayfa.goster { display: block; }
 .sertlik .bar i.dolu { background: var(--kirmizi); }
 
 /* ---------- Fiyat listesi ---------- */
-
-.dizin tr.fiyat-satir td { font-style: normal; color: var(--soluk); }
-.dizin tr.fiyat-satir td.kod a { color: var(--soluk); letter-spacing: .12em; }
 
 .fiyat .icerik { position: absolute; top: 96px; left: 56px; right: 56px; }
 .fiyat h2 { font-family: var(--serif); font-weight: 400; font-size: 44px; line-height: 1.05; letter-spacing: -.015em; margin: 14px 0 10px; }
@@ -295,6 +238,9 @@ body.tek .sayfa.goster { display: block; }
 .urun.cift .hero { top: 72px; left: 56px; right: 56px; height: 384px; }
 .urun.cift .dikey-gorsel { top: 480px; left: 56px; width: 250px; height: 444px; }
 .urun.cift .metin-kolon { position: absolute; top: 480px; left: 334px; right: 56px; bottom: 80px; }
+/* İki yatay görsel: alttaki küçük görsel de yatay oranda */
+.urun.iki-yatay .dikey-gorsel { width: 330px; height: 186px; }
+.urun.iki-yatay .metin-kolon { left: 410px; }
 .urun .metin-kolon h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.08; letter-spacing: -.01em; margin: -4px 0 14px; }
 .urun .metin-kolon .aciklama { font-size: 13.5px; color: #4A413C; }
 .urun .metin-kolon .ikonlar { margin-top: 18px; }
@@ -308,15 +254,7 @@ body.tek .sayfa.goster { display: block; }
 
 .sertlik .bar i { width: 16px; }
 
-/* ---------- Çok sayfalı dizin ---------- */
-
-.dizin h2 span { font-size: 22px; color: var(--soluk); }
-.dizin .aciklama { margin-bottom: 28px; }
-.dizin td { padding: 7px 0; font-size: 13.5px; }
-.dizin tr.grup td { padding: 18px 0 6px; font-size: 18px; }
-
 /* Uzun mevcut ürün kodları (ör. evecizgilisaten4adet) için geniş kod sütunu */
-.dizin td.kod { width: 236px; padding-right: 16px; }
 .fiyat td.kod { width: 196px; padding-right: 14px; }
 
 /* ---------- Gruplu ürün sayfası ---------- */

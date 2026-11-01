@@ -13,9 +13,9 @@
       "de": "Möbelviertel Kısıkköy, İzmir / Türkei"
     },
     "slogan": {
-      "tr": "Nevresimden yastığa, evinizin her köşesi için.",
-      "en": "From bedding to pillows, for every corner of your home.",
-      "de": "Von der Bettwäsche bis zum Kissen – für jede Ecke Ihres Zuhauses."
+      "tr": "2001'den bu yana uyku için üretiyoruz.",
+      "en": "Making sleep products since 2001.",
+      "de": "Schlafprodukte seit 2001."
     },
     "sertifikalar": [
       "OEKO-TEX®",
@@ -26,36 +26,12 @@
   "metin": {
     "tr": {
       "katalog": "Ürün Kataloğu",
-      "hakkimizda_etiket": "Hakkımızda",
       "ikon": {
         "visco": "Visco hafızalı sünger",
         "yikanabilir": "Yıkanabilir kılıf",
         "nefes": "Nefes alan kumaş",
         "oeko": "OEKO-TEX® sertifikalı"
       },
-      "hakkimizda_baslik": "2001'den bu yana uyku için üretiyoruz.",
-      "hakkimizda": [
-        "EVE SER Tekstil, 2001 yılında vatka üretimi geleneğinin ev tekstiline uzanan bir devamı olarak İzmir'de kuruldu.",
-        "Bugün yastık, yorgan, alez ve dolgu malzemelerini kendi tesisimizde üretiyoruz. Üretimde kullandığımız elyaf açma, boncuk elyaf ve yastık dolum makinelerini de kendimiz imal edip ihraç ediyoruz.",
-        "Perakende ve toptan müşterilerimize rekabetçi fiyat, kontrol edilmiş kalite ve hızlı teslimat sunuyoruz."
-      ],
-      "rakamlar": [
-        [
-          "2001",
-          "kuruluş yılı"
-        ],
-        [
-          "100%",
-          "kendi üretimimiz"
-        ],
-        [
-          "3",
-          "uluslararası sertifika"
-        ]
-      ],
-      "sertifika_baslik": "Sertifikalar",
-      "dizin_baslik": "Ürünler",
-      "dizin_aciklama": "Sipariş ve bilgi talepleriniz için ürün kodunu belirtmeniz yeterlidir.",
       "kod": "Kod",
       "urun": "Ürün",
       "sayfa": "Sayfa",
@@ -94,36 +70,12 @@
     },
     "en": {
       "katalog": "Product Catalogue",
-      "hakkimizda_etiket": "About us",
       "ikon": {
         "visco": "Visco memory foam",
         "yikanabilir": "Washable cover",
         "nefes": "Breathable fabric",
         "oeko": "OEKO-TEX® certified"
       },
-      "hakkimizda_baslik": "Making sleep products since 2001.",
-      "hakkimizda": [
-        "EVE SER Tekstil was founded in İzmir in 2001, growing out of a family tradition of wadding production into home textile manufacturing.",
-        "Today we produce pillows, duvets, mattress protectors and filling materials in our own facility. We also build and export the fibre opening, ball fibre and pillow filling machines used in production.",
-        "We offer retail and wholesale customers competitive prices, controlled quality and fast delivery."
-      ],
-      "rakamlar": [
-        [
-          "2001",
-          "founded"
-        ],
-        [
-          "100%",
-          "in-house production"
-        ],
-        [
-          "3",
-          "international certificates"
-        ]
-      ],
-      "sertifika_baslik": "Certificates",
-      "dizin_baslik": "Products",
-      "dizin_aciklama": "Simply quote the product code for orders and enquiries.",
       "kod": "Code",
       "urun": "Product",
       "sayfa": "Page",
@@ -162,36 +114,12 @@
     },
     "de": {
       "katalog": "Produktkatalog",
-      "hakkimizda_etiket": "Über uns",
       "ikon": {
         "visco": "Visco-Memory-Schaum",
         "yikanabilir": "Waschbarer Bezug",
         "nefes": "Atmungsaktiver Stoff",
         "oeko": "OEKO-TEX® zertifiziert"
       },
-      "hakkimizda_baslik": "Schlafprodukte seit 2001.",
-      "hakkimizda": [
-        "EVE SER Tekstil wurde 2001 in İzmir gegründet und ist aus einer familiären Tradition der Wattierungsherstellung zum Heimtextilproduzenten gewachsen.",
-        "Heute fertigen wir in unserem eigenen Werk Kissen, Bettdecken, Matratzenschoner und Füllmaterialien. Außerdem bauen und exportieren wir die in der Produktion eingesetzten Faseröffnungs-, Kugelfaser- und Kissenfüllmaschinen.",
-        "Einzel- und Großhandelskunden bieten wir wettbewerbsfähige Preise, geprüfte Qualität und schnelle Lieferung."
-      ],
-      "rakamlar": [
-        [
-          "2001",
-          "gegründet"
-        ],
-        [
-          "100%",
-          "eigene Produktion"
-        ],
-        [
-          "3",
-          "internationale Zertifikate"
-        ]
-      ],
-      "sertifika_baslik": "Zertifikate",
-      "dizin_baslik": "Produkte",
-      "dizin_aciklama": "Für Bestellungen und Anfragen genügt die Angabe des Produktcodes.",
       "kod": "Code",
       "urun": "Produkt",
       "sayfa": "Seite",
