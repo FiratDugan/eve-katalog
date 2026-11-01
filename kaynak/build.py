@@ -514,9 +514,17 @@ if (n) { document.body.classList.add('tek'); document.getElementById('p' + n).cl
 
 
 def chrome(*args):
-    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-                    "--allow-file-access-from-files", "--virtual-time-budget=4000", *args],
-                   check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Chrome bazen (özellikle GitHub makinesinde) takılıp hiç çıkmıyor: süre sınırı, bir kez yeniden dene
+    komut = [CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+             "--allow-file-access-from-files", "--virtual-time-budget=4000", *args]
+    for deneme in (1, 2):
+        try:
+            subprocess.run(komut, check=True, timeout=180, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return
+        except subprocess.TimeoutExpired:
+            if deneme == 2:
+                raise
+            print("  uyarı: Chrome yanıt vermedi, yeniden deneniyor")
 
 
 def main():

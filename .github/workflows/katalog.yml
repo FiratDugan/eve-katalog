@@ -27,6 +27,8 @@ jobs:
   olustur:
     # build.py görselleri macOS'un sips aracıyla küçültüyor; Chrome bu makinede kurulu geliyor
     runs-on: macos-latest
+    # Normalde ~10 dk; takılırsa saatlerce beklemesin
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v7
 
