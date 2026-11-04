@@ -1,14 +1,17 @@
-# Fiyat güncelleme otomasyonu: kurulum
+# Katalog güncelleme otomasyonu: kurulum
 
-Firma fiyatları bir Google E-Tablosunda değiştirir, **Katalog > Kataloğu güncelle** menüsüne basar.
-GitHub kataloğu yeni fiyatlarla yeniden oluşturur (PDF'ler + sayfa çevirmeli web sürümü) ve aynı linkte yayınlar. Süre: 3–5 dakika.
+Firma ürün bilgilerini (TR/EN/DE) ve fiyatları bir Google E-Tablosunda değiştirir, **Katalog > Kataloğu güncelle** menüsüne basar.
+GitHub kataloğu yeniden oluşturur (PDF'ler + sayfa çevirmeli web sürümü) ve aynı linkte yayınlar. Süre: 10–15 dakika.
 
 ```
-Google E-Tablo ──(menü düğmesi)──► GitHub Actions ──(build.py, macOS)──► GitHub Pages
-  Fiyatlar / Ayarlar                 fiyatlar.json'u depoya kaydeder          sabit link
+Google E-Tablo ──(menü düğmesi)──► GitHub Actions ──(tablodan.py + build.py, macOS)──► GitHub Pages
+  Ürünler / Fiyatlar / Ayarlar       katalog.json + fiyatlar.json'u depoya kaydeder        sabit link
 ```
 
-- Tablo verisi gönderilmeden önce denetlenir (boş hücre, sayı olmayan fiyat, katalogda olmayan kod).
+- Tablodan yapılabilenler: mevcut ürünlerin adı, varyantı, açıklaması, ölçü, ağırlık, dolgu, kumaş, sertlik, paketleme ve fiyatları.
+  Yapılamayanlar: yeni ürün, görsel, ürün kodu, kategori, grup. Bunlar `katalog.json`'dan yapılır.
+- Veri sıkıştırılıp (gzip + base64) gönderilir; 44 ürün ≈ 5.500 karakter, GitHub sınırı ~65.000.
+- Tablo verisi gönderilmeden önce denetlenir (boş ürün adı, eksik EN/DE çevirisi, tanınmayan sertlik, sayı olmayan fiyat, katalogda olmayan kod).
   Sorun varsa firma hangi satırda olduğunu hemen görür.
 - Oluşturma yine de hata verirse **yayındaki katalog değişmez**, eski fiyatlarla kalır.
   Hata e-postası depo sahibine gelir.
@@ -55,7 +58,8 @@ Yanlış fiyat yayınlandıysa tablodan doğru fiyatlarla tekrar "Kataloğu gün
 
 ## 3. Google E-Tablo
 
-1. Firmanın (demo için kendi) Google hesabında yeni bir tablo aç: **EVE Katalog Fiyatları**.
+1. `Excel Dosyası/EVE-Katalog-Guncelleme-Tablosu.xlsx` dosyasını Google Drive'a yükle, açıp
+   **Dosya > Google E-Tablolar olarak kaydet** de. (Ya da boş bir tablo açıp 6. adımda doldur.)
 2. **Uzantılar > Apps Script**. Açılan düzenleyicide `Kod.gs` içeriğini sil, bu klasördeki `Kod.gs`'nin tamamını yapıştır.
 3. Dosyanın başındaki iki satırı doldur:
    ```
@@ -67,7 +71,9 @@ Yanlış fiyat yayınlandıysa tablodan doğru fiyatlarla tekrar "Kataloğu gün
 5. **Katalog > Kurulum > GitHub anahtarını kaydet**, 2. adımdaki anahtarı yapıştır.
    İlk seferde Google izin ister: *Advanced (Gelişmiş) > Go to … (unsafe)* > *Allow*.
    Bu uyarı, betiği Google'a doğrulatmadığımız için çıkıyor; betik yalnızca bu tabloyu ve GitHub'ı kullanır.
-6. **Katalog > Kurulum > Tabloyu yayındaki fiyatlarla hazırla**. `Fiyatlar` ve `Ayarlar` sayfaları oluşur.
+6. Gerekirse **Katalog > Kurulum > Tabloyu yayındaki katalogla hazırla**: `Ürünler`, `Fiyatlar` ve `Ayarlar`
+   sayfalarını depodaki güncel bilgilerle yeniden oluşturur. Depo tablo dışından değiştirildiyse
+   (yeni ürün, elle fiyat değişikliği) tabloyu güncellemek için de bu menü kullanılır.
 7. Tabloyu firmadaki belirli kişilerle, e-posta adresleriyle **Düzenleyici** olarak paylaş.
    **"Bağlantıya sahip herkes düzenleyebilir" ayarını asla açma.**
    Düzenleyiciler Apps Script'in proje ayarlarından GitHub anahtarını görebilir.
@@ -75,23 +81,25 @@ Yanlış fiyat yayınlandıysa tablodan doğru fiyatlarla tekrar "Kataloğu gün
 
 ## 4. Demo / test
 
-1. `Fiyatlar` sayfasında bir fiyatı değiştir (ör. EVE-501, 1+, TL: 1.699).
+1. `Fiyatlar` sayfasında bir fiyatı, `Ürünler` sayfasında bir açıklamayı (TR/EN/DE) değiştir.
 2. `Ayarlar` > B1'deki geçerlilik tarihini güncelle.
 3. **Katalog > Kataloğu güncelle** > Evet.
-4. 3–5 dakika sonra **Katalog > Son güncellemenin durumu** > "Tamamlandı".
-5. Katalog linkini yenile: fiyat listesi sayfası ve PDF yeni fiyatı gösterir.
+4. 10–15 dakika sonra **Katalog > Son güncellemenin durumu** > "Tamamlandı".
+5. Katalog linkini yenile: ürün sayfası ve fiyat listesi değişikliği gösterir.
 
 Hata denemesi: bir TL hücresini boşalt ya da `EVE-999` gibi olmayan bir kod yaz, güncellemeye bas. Tablo hangi satırda sorun olduğunu söyler, hiçbir şey gönderilmez.
 
 ## Firmaya anlatılacak kısa kullanım
 
-> Fiyat değiştiğinde:
-> 1. **Fiyatlar** sayfasında TL, USD ve EUR fiyatlarını yazın. TL zorunlu; USD/EUR henüz belli değilse boş bırakılabilir.
-> 2. **Ayarlar** sayfasında geçerlilik tarihini güncelleyin.
-> 3. **Katalog > Kataloğu güncelle**'ye basın.
+> Ürün bilgisi ya da fiyat değiştiğinde:
+> 1. **Ürünler** sayfasında bilgileri değiştirin. Ad, açıklama, dolgu, kumaş ve paketleme TR, EN ve DE olarak yazılır;
+>    biri doluysa üçü de dolu olmalı. Sertlik listeden seçilir.
+> 2. **Fiyatlar** sayfasında TL, USD ve EUR fiyatlarını yazın. TL zorunlu; USD/EUR henüz belli değilse boş bırakılabilir.
+> 3. Fiyat değiştiyse **Ayarlar** sayfasında geçerlilik tarihini güncelleyin.
+> 4. **Katalog > Kataloğu güncelle**'ye basın.
 >
-> Birkaç dakika içinde katalog linki ve PDF yeni fiyatlarla yenilenir.
-> "Ürün" sütunu yalnızca bilgi içindir; ürün adı, yeni ürün, görsel gibi değişiklikler için bize yazın.
+> 10–15 dakika içinde katalog linki ve PDF'ler yenilenir.
+> Yeni ürün, görsel, ürün kodu ya da kategori değişiklikleri için bize yazın.
 
 ## Sonra: kendi alan adı
 

@@ -30,7 +30,7 @@ Her kategorinin son ürününden sonra o kategorinin fiyat listesi sayfası otom
   `{"kod": "EVE-501", "adet": "10+", "tl": 1449, "usd": 34.67, "eur": 29.75}`
 - TL, USD ve EUR elle girilir; kur hesabı yapılmaz. TL zorunludur; USD/EUR ve adet boş bırakılabilir (listede "—" görünür).
 - Geçerlilik tarihi de `fiyatlar.json` içindedir (`gecerlilik`). Fiyat notları (KDV vb.) `metin.tr.fiyat_notlar` ve `metin.en.fiyat_notlar` altındadır.
-- Yayındaki katalogda bu dosyayı firmanın Google E-Tablosu doldurur. Kurulum ve kullanım: `otomasyon/KURULUM.md`.
+- Yayındaki katalogda bu dosyayı firmanın Google E-Tablosu doldurur. Tablo ayrıca ürün adlarını, açıklamalarını ve özelliklerini (TR/EN/DE) `katalog.json`'a yazar (`kaynak/tablodan.py`). Yerelde değişiklik yapmadan önce `git pull`. Kurulum ve kullanım: `otomasyon/KURULUM.md`.
 - Fiyatı olmayan ürün, fiyat listesinde görünmez.
 - Fiyat listesinin arkasından, listedeki ürünlerin görsellerini kod ve adlarıyla gösteren bir sayfa gelir. Izgara ürün sayısına göre kendini ayarlar; her kutuya ürünün o kutuya en uygun oranlı fotoğrafı seçilir.
 
