@@ -1,213 +1,213 @@
 {
-  "gecerlilik": "28.10.2026",
+  "gecerlilik": "05.11.2026",
   "satirlar": [
     {
       "kod": "EVE-11",
       "adet": "1",
-      "tl": 150.0,
-      "usd": 3.0,
+      "tl": 155,
+      "usd": 3,
       "eur": 2.68
     },
     {
       "kod": "EVE-LUX-6",
       "adet": "1",
-      "tl": 180.0,
+      "tl": 180,
       "usd": 3.6,
       "eur": 3.21
     },
     {
       "kod": "YellowDream02",
       "adet": "1",
-      "tl": 180.0,
+      "tl": 180,
       "usd": 3.6,
       "eur": 3.21
     },
     {
       "kod": "evecizgilisaten4adet",
       "adet": "1",
-      "tl": 160.0,
+      "tl": 160,
       "usd": 3.2,
       "eur": 2.85
     },
     {
       "kod": "BMB-101",
       "adet": "1",
-      "tl": 160.0,
+      "tl": 160,
       "usd": 3.2,
       "eur": 2.85
     },
     {
       "kod": "BMBGRİ-101",
       "adet": "1",
-      "tl": 160.0,
+      "tl": 160,
       "usd": 3.2,
       "eur": 2.85
     },
     {
       "kod": "EveGold01",
       "adet": "1",
-      "tl": 1200.0,
-      "usd": 24.0,
+      "tl": 1200,
+      "usd": 24,
       "eur": 21.43
     },
     {
       "kod": "jellivisco01",
       "adet": "1",
-      "tl": 1500.0,
-      "usd": 30.0,
+      "tl": 1500,
+      "usd": 30,
       "eur": 26.79
     },
     {
       "kod": "PLÜTON001",
       "adet": "1",
-      "tl": 1200.0,
-      "usd": 24.0,
+      "tl": 1200,
+      "usd": 24,
       "eur": 21.43
     },
     {
       "kod": "JÜPİTER001",
       "adet": "1",
-      "tl": 1200.0,
-      "usd": 24.0,
+      "tl": 1200,
+      "usd": 24,
       "eur": 21.43
     },
     {
       "kod": "MARS001",
       "adet": "1",
-      "tl": 1200.0,
-      "usd": 24.0,
+      "tl": 1200,
+      "usd": 24,
       "eur": 21.43
     },
     {
       "kod": "Frozone01",
       "adet": "1",
-      "tl": 1500.0,
-      "usd": 30.0,
+      "tl": 1500,
+      "usd": 30,
       "eur": 26.79
     },
     {
       "kod": "HYPNOZZ001",
       "adet": "1",
-      "tl": 1500.0,
-      "usd": 30.0,
+      "tl": 1500,
+      "usd": 30,
       "eur": 26.79
     },
     {
       "kod": "EveViscoYeniSeri01",
       "adet": "1",
-      "tl": 250.0,
-      "usd": 5.0,
+      "tl": 250,
+      "usd": 5,
       "eur": 4.47
     },
     {
       "kod": "Eveviskoo1113",
       "adet": "1",
-      "tl": 400.0,
-      "usd": 8.0,
+      "tl": 400,
+      "usd": 8,
       "eur": 7.14
     },
     {
       "kod": "VİSCOBALİNA",
       "adet": "1",
-      "tl": 450.0,
-      "usd": 9.0,
+      "tl": 450,
+      "usd": 9,
       "eur": 8.03
     },
     {
       "kod": "EVE-302",
       "adet": "1",
-      "tl": 450.0,
-      "usd": 9.0,
+      "tl": 450,
+      "usd": 9,
       "eur": 8.03
     },
     {
       "kod": "EVE-303",
       "adet": "1",
-      "tl": 450.0,
-      "usd": 9.0,
+      "tl": 450,
+      "usd": 9,
       "eur": 8.03
     },
     {
       "kod": "EVE-304",
       "adet": "1",
-      "tl": 450.0,
-      "usd": 9.0,
+      "tl": 450,
+      "usd": 9,
       "eur": 8.03
     },
     {
       "kod": "EVE-305",
       "adet": "1",
-      "tl": 450.0,
-      "usd": 9.0,
+      "tl": 450,
+      "usd": 9,
       "eur": 8.03
     },
     {
       "kod": "Evetekstilyorgan1",
       "adet": "1",
-      "tl": 500.0,
-      "usd": 10.0,
+      "tl": 500,
+      "usd": 10,
       "eur": 8.94
     },
     {
       "kod": "EVE-402",
       "adet": "1",
-      "tl": 800.0,
-      "usd": 16.0,
+      "tl": 800,
+      "usd": 16,
       "eur": 14.29
     },
     {
       "kod": "AYHAMİLEVEMZİRMEYASTIĞI",
       "adet": "1",
-      "tl": 1400.0,
-      "usd": 28.0,
-      "eur": 25.0
+      "tl": 1400,
+      "usd": 28,
+      "eur": 25
     },
     {
       "kod": "EVE-503",
       "adet": "1",
-      "tl": 1400.0,
-      "usd": 28.0,
-      "eur": 25.0
+      "tl": 1400,
+      "usd": 28,
+      "eur": 25
     },
     {
       "kod": "EVE-504",
       "adet": "1",
-      "tl": 1200.0,
-      "usd": 24.0,
+      "tl": 1200,
+      "usd": 24,
       "eur": 21.43
     },
     {
       "kod": "CoxyOrtopedik01",
       "adet": "1",
-      "tl": 600.0,
-      "usd": 12.0,
+      "tl": 600,
+      "usd": 12,
       "eur": 10.72
     },
     {
       "kod": "EVE-602",
       "adet": "1",
-      "tl": 600.0,
-      "usd": 12.0,
+      "tl": 600,
+      "usd": 12,
       "eur": 10.72
     },
     {
       "kod": "EVE-1001",
       "adet": "1",
-      "tl": 200.0,
-      "usd": 4.0,
+      "tl": 200,
+      "usd": 4,
       "eur": 3.57
     },
     {
       "kod": "EVE-1101",
       "adet": "1",
-      "tl": 120.0,
+      "tl": 120,
       "usd": 2.41,
       "eur": 2.14
     },
     {
       "kod": "EVE-1103",
       "adet": "1",
-      "tl": 175.0,
+      "tl": 175,
       "usd": 3.5,
       "eur": 3.13
     }

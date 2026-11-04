@@ -277,9 +277,9 @@
       "excel_no": 1,
       "kaynak_klasor": "Mikrofiber yastık",
       "ad": {
-        "tr": "Microfiber Yastık",
-        "en": "Microfibre Pillow",
-        "de": "Mikrofaserkissen"
+        "tr": "Deneme açıklaması",
+        "en": "Test description",
+        "de": "Testbeschreibung"
       },
       "aciklama": {
         "tr": "",
